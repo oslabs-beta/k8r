@@ -1,3 +1,8 @@
+const path = require('path');
+const fs = require('fs').promises;
+
+const dbFile = path.resolve(__dirname, '../db/db.json');
+
 const grafanaUrl = 'http://localhost:3000';
 const username = 'admin';
 const password = 'prom-operator';
@@ -19,7 +24,12 @@ const grafanaController = {
       },
     })
     const parsedRes = await res.json();
-    const mainDashboardUId: string = parsedRes[0].uid;
+    const nodeDashboardUId: string = parsedRes[0].uid;
+
+    const dbJson = await fs.readFile(dbFile, 'utf8');
+    const db = JSON.parse(dbJson);
+    db.nodeDashboardUId = nodeDashboardUId;
+    await fs.writeFile(dbFile, JSON.stringify(db));
   },
 
 };

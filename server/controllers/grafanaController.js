@@ -35,12 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
+var path = require('path');
+var fs = require('fs').promises;
+var dbFile = path.resolve(__dirname, '../db/db.json');
 var grafanaUrl = 'http://localhost:3000';
 var username = 'admin';
 var password = 'prom-operator';
 var grafanaController = {
     getDashboards: function () { return __awaiter(_this, void 0, void 0, function () {
-        var encodedCredentials, res, parsedRes, mainDashboardUId;
+        var encodedCredentials, res, parsedRes, nodeDashboardUId, dbJson, db;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -58,8 +61,15 @@ var grafanaController = {
                     return [4 /*yield*/, res.json()];
                 case 2:
                     parsedRes = _a.sent();
-                    mainDashboardUId = parsedRes[0].uid;
-                    console.log(mainDashboardUId);
+                    nodeDashboardUId = parsedRes[0].uid;
+                    return [4 /*yield*/, fs.readFile(dbFile, 'utf8')];
+                case 3:
+                    dbJson = _a.sent();
+                    db = JSON.parse(dbJson);
+                    db.nodeDashboardUId = nodeDashboardUId;
+                    return [4 /*yield*/, fs.writeFile(dbFile, JSON.stringify(db))];
+                case 4:
+                    _a.sent();
                     return [2 /*return*/];
             }
         });

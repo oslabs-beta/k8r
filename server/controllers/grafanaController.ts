@@ -35,5 +35,3 @@ const grafanaController = {
 };
 
 module.exports = grafanaController;
-
-grafanaController.getDashboards();

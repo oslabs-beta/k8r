@@ -1,15 +1,17 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
-import grafanaController from './controllers/grafanaController';
+import grafanaRouter from './routes/grafanaRouter';
 import connectDB from './db/db';
 
 connectDB();
 
-const port: number = Number(process.env.PORT) || 3000;
+const port: number = Number(process.env.PORT) || 8888;
 const app: Express = express();
 
 // to enable request body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/grafana', grafanaRouter);
 
 //route for url not existed
 app.use((req: Request, res: Response) => {

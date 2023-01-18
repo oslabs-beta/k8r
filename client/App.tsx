@@ -3,14 +3,21 @@ import './App.css'
 import Header from './components/Header'
 import MainContainer from './components/MainContainer'
 import NavBar from './components/NavBar'
+import LandingPage from './pages/LandingPage'
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [userAuthenticated, setUserAuthenticated] = useState(false);
+
   return (
     <div className="App">
-      <Header />
-      <NavBar />
-      <MainContainer />
+      {!userAuthenticated
+        ? <LandingPage />
+        : <>
+          <Header />
+          <NavBar />
+          <MainContainer />
+        </>
+      }
     </div>
   )
 }

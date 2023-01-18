@@ -20,7 +20,24 @@ function LandingPage() {
       </div>
       <div className="verticalLine"></div>
       <div className="loginContainer">
-        <div className="googleOauth" style={{ color: 'white' }}>Google OAuth Goes Here</div>
+        {/* <div className="googleOauth" style={{ color: 'white' }}>Google OAuth Goes Here</div> */}
+        <div className="googleOAuthContainer">
+          <div id="g_id_onload"
+            data-client_id="687595826738-q8nfrogiqm094mr04ir15mqqh20a6prj.apps.googleusercontent.com"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost:8888/"
+            data-auto_prompt="false">
+          </div>
+          <div className="g_id_signin"
+            data-type="standard"
+            data-shape="pill"
+            data-theme="outline"
+            data-text="signin_with"
+            data-size="large"
+            data-logo_alignment="left">
+          </div>
+        </div>
         <form id="loginForm" onSubmit={submitLogin}>
           <input id="usernameInput" name="username" className="loginInput" type="text" placeholder="username" />
           <input id="passwordInput" name="password" className="loginInput" type="password" placeholder="password" />

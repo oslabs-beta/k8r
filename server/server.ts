@@ -4,7 +4,7 @@ import connectDB from './db/db';
 
 connectDB();
 
-const port: number = Number(process.env.PORT) || 8888;
+const port: number = Number(process.env.PORT) || 8880;
 const app: Express = express();
 
 // to enable request body parser

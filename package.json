@@ -2,11 +2,15 @@
   "name": "k8r",
   "private": true,
   "version": "0.0.0",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "dev": "concurrently 'vite' 'nodemon server/server.js'",
+    "dev": "concurrently 'vite' 'nodemon server/server.ts'",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:server": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts",
+    "dev2": "concurrently 'vite' 'nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts'",
+    "dev:client": "'vite'",
+    "devAI": "concurrently 'vite' 'nodemon --watch './src/**/*.ts' --exec 'ts-node' server/server.ts'"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
@@ -14,9 +18,11 @@
     "mongoose": "^6.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.6.2"
+    "react-router": "^6.6.2",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.15",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",

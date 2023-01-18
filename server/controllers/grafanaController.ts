@@ -34,4 +34,4 @@ const grafanaController = {
 
 };
 
-module.exports = grafanaController;
+export default grafanaController;

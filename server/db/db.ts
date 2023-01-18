@@ -7,11 +7,10 @@ dotenv.config();
 const connectDB = async (): Promise<void> => {
   try {
     // Create variable that will be used to establish a connection to the database
-    // The MONGO_URI is defined in our .env file
-    // const conn = await mongoose.connect(process.env.MONGO_URI);
+    // The MONGO_URL is defined in our .env file
 
     //for testing purpose only
-    const URI: string = process.env.MONGO_URI_TEST;
+    const URI: string = process.env.MONGO_URL!;
     const conn = await mongoose.connect(URI);
     console.log('MongoDB connected');
 

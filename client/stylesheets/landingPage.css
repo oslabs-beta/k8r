@@ -1,0 +1,42 @@
+.landingPage {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  align-items: center;
+  gap: 100px;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: end;
+}
+
+#k8rLogo {
+  width: 400px;
+}
+
+.verticalLine {
+  height: 400px;
+  border: 1px solid var(--K8RLightBlue)
+}
+
+.loginContainer,
+#loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#loginForm {
+  max-width: 300px;
+  min-width: 100px;
+  gap: 20px;
+}
+
+#loginButton {
+  background-color: var(--K8RLightBlue);
+  color: var(--K8RDarkBlue);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px;
+  border: none;
+}

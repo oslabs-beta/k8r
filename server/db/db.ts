@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import * as clc from 'cli-color';
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const connectDB = async (): Promise<void> => {
     //for testing purpose only
     const URI: string = process.env.MONGO_URL!;
     const conn = await mongoose.connect(URI);
-    console.log('MongoDB connected');
+    console.log(clc.redBright.bgWhite('MongoDB connected'));
 
     // Console log the local host if the connection is successful
     // console.log(`MongoDB Connected: ${ conn.connection.host }`.cyan.underline);

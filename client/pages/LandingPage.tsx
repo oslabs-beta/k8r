@@ -20,7 +20,6 @@ function LandingPage() {
       </div>
       <div className="verticalLine"></div>
       <div className="loginContainer">
-        {/* <div className="googleOauth" style={{ color: 'white' }}>Google OAuth Goes Here</div> */}
         <div className="googleOAuthContainer">
           <div id="g_id_onload"
             data-client_id="687595826738-q8nfrogiqm094mr04ir15mqqh20a6prj.apps.googleusercontent.com"

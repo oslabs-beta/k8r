@@ -1,17 +1,42 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import grafanaRouter from './routes/grafanaRouter';
+import authRouter from './routes/authRouter';
 import connectDB from './db/db';
+import passport from 'passport'
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 connectDB();
 
 const port: number = Number(process.env.EXPRESS_PORT) || 8880;
 const app: Express = express();
 
-// to enable request body parser
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET as string,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(passport.authenticate('session'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+  })
+);
+
+
+
+app.use('/auth', authRouter);
 app.use('/grafana', grafanaRouter);
+
 
 //route for url not existed
 app.use((req: Request, res: Response) => {

@@ -6,27 +6,19 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   googleId: {
     type: String,
-    required: true
+    default: null,
   },
-  diplayName: {
+  email: {
     type: String,
-    required: true
+    required: [true, "email required"],
+    unique: [true, "email already registered"],
   },
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  image: {
+  displayName: {
     type: String,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  profilePhoto: {
+    type: String
+  },
 });
 
 const User = mongoose.model('User', userSchema);

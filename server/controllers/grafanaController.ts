@@ -9,6 +9,7 @@ import express, {
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
 import UserDashboards from '../models/userDashboards';
+import dashboardController from './dashboardController';
 // import { readFile, writeFile } from 'fs/promises'
 // const fsTemp = fs.promises;
 
@@ -42,14 +43,20 @@ const grafanaController = {
     );
     const parsedRes = await dbRes.json();
     const nodeDashboardUId: string = parsedRes[0].uid;
+    const userId = req.cookies.id;
     console.log('res.cookies: ', req.cookies.id);
     // need to implement conditional statement to check 
     // if user exists in UserDashboards database and update/create new data entry accordingly
-    const userDashboard = UserDashboards.create({
-      userId: req.cookies.id,
-      nodeUId: nodeDashboardUId,
-    })
-    res.locals.userDashboard = userDashboard;
+    // const userDashboard = UserDashboards.create({
+    //   userId: req.cookies.id,
+    //   nodeUId: nodeDashboardUId,
+    // })
+    // res.locals.userDashboard = userDashboard;
+    if(UserDashboards.findOne(userId) === null) {
+      const userInfo = dashboardController.addUserDashboard(userId, nodeDashboardUId);
+    } else {
+      const userInfo = dashboardController.updateUserDashboard(userId, nodeDashboardUId);
+    }
     const dbJson = await fs.readFile(dbFile, 'utf8');
     const db = JSON.parse(dbJson);
     db.nodeDashboardUId = nodeDashboardUId;

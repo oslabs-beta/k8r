@@ -1,19 +1,19 @@
-import User from '../models/userModel';
+import UserDashboards from "../models/userDashboards";
 import express, { Express, Request, Response, ErrorRequestHandler, NextFunction } from 'express';
 
 const createErrorObject = (err) => {
   return {
-    log: 'Error in User Controller',
+    log: 'Error in dashboardController',
     message: { err: `An error occurred ${err}` },
   }
 }
+const dashboardController = {
 
-const userController = {
-
-  getUser: async (googleId: string): Promise<[]> => {
+  updateUserDashboard: async (userId: string, dashboardUId: string): Promise<[]> => {
     try {
       // TODO: fix type any
-      const userInfo: any = await User.find({ googleId: googleId });
+      const userInfo: any = await UserDashboards.findOne({ userId });
+
       return userInfo;
     } catch (err) {
       createErrorObject(err);
@@ -22,13 +22,11 @@ const userController = {
     }
 
   },
-  addUser: async (profile) => {
+  addUserDashboard: async (userId: string, dashboardUId: string) => {
     try {
-      const userInfo = await User.create({
-        googleId: profile.sub,
-        email: profile.email,
-        displayName: profile.displayName,
-        profilePhoto: profile.picture,
+      const userInfo = await UserDashboards.create({
+        userId: userId,
+        dashboardUId: dashboardUId,
       });
       return userInfo;
     } catch (err) {
@@ -36,8 +34,8 @@ const userController = {
       // Returning empty array to tell auth.ts that no user was found
       return [];
     }
-  }
+  },
 
 }
 
-export default userController;
+export default dashboardController;

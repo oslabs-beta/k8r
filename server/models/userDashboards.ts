@@ -8,8 +8,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  nodeUId: {
-    type: String,
+  dashboardUId: {
+    type: Array,
   },
 
 });

@@ -42,13 +42,14 @@ const grafanaController = {
     );
     const parsedRes = await dbRes.json();
     const nodeDashboardUId: string = parsedRes[0].uid;
-
-    // const userDashboard = UserDashboards.create({
-    //   userId: req.cookies.id,
-    //   nodeUId: nodeDashboardUId,
-    // })
-    // res.locals.userDashboard = userDashboard;
-
+    console.log('res.cookies: ', req.cookies.id);
+    // need to implement conditional statement to check 
+    // if user exists in UserDashboards database and update/create new data entry accordingly
+    const userDashboard = UserDashboards.create({
+      userId: req.cookies.id,
+      nodeUId: nodeDashboardUId,
+    })
+    res.locals.userDashboard = userDashboard;
     const dbJson = await fs.readFile(dbFile, 'utf8');
     const db = JSON.parse(dbJson);
     db.nodeDashboardUId = nodeDashboardUId;

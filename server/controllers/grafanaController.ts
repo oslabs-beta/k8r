@@ -2,6 +2,7 @@ import path from 'path';
 import express, { Express, Request, Response, ErrorRequestHandler, NextFunction } from 'express';
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
+import UserDashboards from '../models/userDashboards';
 // import { readFile, writeFile } from 'fs/promises'
 // const fsTemp = fs.promises;
 
@@ -39,7 +40,7 @@ const grafanaController = {
     await fs.writeFile(dbFile, JSON.stringify(db));
     next();
   },
-
+  
 };
 
 export default grafanaController;

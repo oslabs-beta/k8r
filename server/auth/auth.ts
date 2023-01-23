@@ -9,7 +9,7 @@ dotenv.config();
 // a matching user. If found, the function returns the user info. If
 // not found, the function adds user to the database and returns user
 // info.
-const cb = async (request, accessToken, refreshToken, profile, done) => {
+const cb = async (req, accessToken, refreshToken, profile, done) => {
   const userInfo = await user.getUser(profile.sub);
   // check if user is found
   if (userInfo.length) {

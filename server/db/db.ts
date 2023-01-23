@@ -13,7 +13,7 @@ const connectDB = async (): Promise<void> => {
     const URI: string = process.env.MONGO_URL!;
     const conn = await mongoose.connect(URI);
     // console.log(clc.redBright.bgWhite('MongoDB connected'));
-
+    console.log('Connected to MongoDB');
     // Console log the local host if the connection is successful
     // console.log(`MongoDB Connected: ${ conn.connection.host }`.cyan.underline);
     // The error handler

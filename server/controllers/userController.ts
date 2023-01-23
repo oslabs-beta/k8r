@@ -31,6 +31,7 @@ const userController = {
         displayName: profile.displayName,
         profilePhoto: profile.picture,
       });
+      global.userEmail = userInfo.email;
       return userInfo;
     } catch (err) {
       createErrorObject(err);

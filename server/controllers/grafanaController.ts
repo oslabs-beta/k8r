@@ -1,5 +1,11 @@
 import path from 'path';
-import express, { Express, Request, Response, ErrorRequestHandler, NextFunction } from 'express';
+import express, {
+  Express,
+  Request,
+  Response,
+  ErrorRequestHandler,
+  NextFunction,
+} from 'express';
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
 import UserDashboards from '../models/userDashboards';
@@ -20,19 +26,28 @@ const grafanaController = {
     // Reference: https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/
 
     // Encode username and password (required to send via fetch)
-    const encodedCredentials = btoa(`${username}:${password}`)
+    const encodedCredentials = btoa(`${username}:${password}`);
 
     //Create org
-    const dbRes = await fetch(`${grafanaUrl}/api/search?query=Node%20Exporter%20/%20Nodes`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Basic ${encodedCredentials}`
-      },
-    })
+    const dbRes = await fetch(
+      `${grafanaUrl}/api/search?query=Node%20Exporter%20/%20Nodes`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${encodedCredentials}`,
+        },
+      }
+    );
     const parsedRes = await dbRes.json();
     const nodeDashboardUId: string = parsedRes[0].uid;
+
+    // const userDashboard = UserDashboards.create({
+    //   userId: req.cookies.id,
+    //   nodeUId: nodeDashboardUId,
+    // })
+    // res.locals.userDashboard = userDashboard;
 
     const dbJson = await fs.readFile(dbFile, 'utf8');
     const db = JSON.parse(dbJson);
@@ -40,7 +55,6 @@ const grafanaController = {
     await fs.writeFile(dbFile, JSON.stringify(db));
     next();
   },
-  
 };
 
 export default grafanaController;

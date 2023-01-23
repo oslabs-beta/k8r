@@ -3,12 +3,15 @@ const router = express.Router();
 import passport from 'passport';
 import '../auth/auth';
 
-// router.get('/user', (req, res) => {
-//   // req.user is the parsed jwt containing user information
-//   //console.log('user info', req.user);
-//   req.user ? res.cookie('id', req.user.id) : null;
-//   res.status(200).json(req.user ? req.user : null);
-// });
+router.get('/user', (req, res) => {
+  // req.user is the parsed jwt containing user information
+  let userId = null;
+  if (req.user) {
+    userId = req.user[0]._id
+  }
+  userId ? res.cookie('id', userId) : null;
+  res.status(200).json(req.user ? req.user : null);
+});
 
 router.get('/google', passport.authenticate('google', { scope: ['email'] }));
 

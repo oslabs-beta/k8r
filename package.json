@@ -4,13 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently 'vite' 'nodemon server/server.ts'",
+    "dev": "vite & nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "dev:server": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts",
-    "dev2": "concurrently 'vite' 'nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts'",
     "dev:client": "'vite'",
-    "devAI": "concurrently 'vite' 'nodemon --watch './src/**/*.ts' --exec 'ts-node' server/server.ts'"
+    "dev:server": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
@@ -24,6 +22,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.6.2",
+    "react-router-dom": "^6.7.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

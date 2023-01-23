@@ -10,7 +10,7 @@ const connectDB = async (): Promise<void> => {
     // The MONGO_URL is defined in our .env file
 
     //for testing purpose only
-    const URI: string = process.env.MONGO_URL!;
+    const URI = process.env.MONGO_URL as string;
     const conn = await mongoose.connect(URI);
     // console.log(clc.redBright.bgWhite('MongoDB connected'));
     console.log('Connected to MongoDB');

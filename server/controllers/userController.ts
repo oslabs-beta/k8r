@@ -14,7 +14,6 @@ const userController = {
     try {
       // TODO: fix type any
       const userInfo: any = await User.find({ googleId: googleId });
-      console.log('user info ', userInfo)
       return userInfo;
     } catch (err) {
       createErrorObject(err);

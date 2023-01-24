@@ -11,6 +11,49 @@
   align-items: center;
 }
 
+.profileCreatorModal {
+  max-height: 60vh;
+  background-color: white;
+  opacity: 1;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0, 0, 5px 5px, rgba(0, 0, 0, 0.5);
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profileCreatorModal h3 {
+  font-size: 1.5em;
+  text-align: left;
+}
+
+.profileNameInput {
+  border-radius: 15px;
+  padding: 0.8em;
+  border: 0px solid black;
+  font-weight: 700;
+  font-size: 1.1em;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.profileNameInput:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.profileNameInput::placeholder {
+  font-style: italic;
+}
+
+.checkboxesContainer {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 0 2em;
+}
+
 .buttonsContainer {
   display: flex;
   justify-content: center;

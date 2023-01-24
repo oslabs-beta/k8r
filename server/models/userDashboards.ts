@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 // set user schema
 const userSchema = new Schema({
-  email: {
+  userId: {
     type: String,
     required: true,
   },
-  nodeUID: {
+  dashboardUId: {
     type: String,
   },
 

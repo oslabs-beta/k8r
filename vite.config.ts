@@ -9,6 +9,7 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:8880/",
       "/auth": "http://localhost:8880/",
+      "/grafana": "http://localhost:8880/",
     }
   },
 })

@@ -11,6 +11,7 @@ const dashboardController = {
 
    addUserDashboard: async (userId: string, nodeExporterUId: string, prometheusUId: string, kubeletUId: string, apiServerUId: string) => {
     try {
+      console.log('Inside of addUserDashboard!!!');
       const userInfo = await UserDashboards.create({
         userId: userId,
         nodeExporterUId: nodeExporterUId,
@@ -25,23 +26,17 @@ const dashboardController = {
       return [];
     }
   },
-  updateUserDashboard: async (userId: string, dashboardUId: string): Promise<[]> => {
+  getUserDashboard: async (userId: string) => {
     try {
-      // TODO: fix type any
-      const filter = { userId: userId };
-      const update = {  }
-      const userInfo: any = await UserDashboards.findOneAndUpdate(filter, update, {
-        new: true,
-      });
-      return userInfo;
+      const user = await UserDashboards.findOne({ userId })
+      console.log("Inside of getUserDashboard!:", user);
+      return user;
     } catch (err) {
       createErrorObject(err);
       // Returning empty array to tell auth.ts that no user was found
       return [];
     }
-
   },
- 
 
 }
 

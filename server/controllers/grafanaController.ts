@@ -36,6 +36,13 @@ const grafanaController = {
       apiServerUId: 'Kubernetes%20/%20API%20Server',
     };
 
+    const userId = req.cookies.id;
+    console.log('res.cookies: ', req.cookies.id);
+    console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
+    if(await UserDashboards.findOne({ userId }) === null) {
+      // checks if user already exists within UserDashboards collection
+      console.log('inside conditional!');
+
     //Create org
     for(let key in dashboardUIds) {
       await fetch(
@@ -60,19 +67,16 @@ const grafanaController = {
         console.error(`Error searching for ${dashboardUIds[key]}: ${error}`);
         });
     }
-    
+
     console.log('THIS IS DASHBOARDUIDS: ', dashboardUIds);
     const { nodeExporterUId, prometheusUId, kubeletUId, apiServerUId } = dashboardUIds;
-    
-    const userId = req.cookies.id;
-    console.log('res.cookies: ', req.cookies.id);
-    console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
-    // checks if user already exists within UserDashboards collection
-    if(await UserDashboards.findOne({ userId }) === null) {
-      console.log('inside conditional!');
-      const userInfo = dashboardController.addUserDashboard(userId, nodeExporterUId, prometheusUId, kubeletUId, apiServerUId);
-      res.locals.userInfo = userInfo;
-    }  
+      const userDbUIds = await dashboardController.addUserDashboard(userId, nodeExporterUId, prometheusUId, kubeletUId, apiServerUId);
+      res.locals.userDbUIds = userDbUIds;
+    } else {
+      const userDbUIds = await dashboardController.getUserDashboard(userId);
+      res.locals.userDbUIds = userDbUIds;
+      console.log('RES.LOCALS.USERDBUIDS: ', res.locals.userDbUIds);
+    }
     next();
   },
 };

@@ -15,12 +15,37 @@ function ProfileCreator({ setShowProfileCreator }) {
       //Push a checkbox with that name to the metricsOptionsElements array to be rendered
       metricsOptionsElements.push(
         <div className="checkboxContainer">
-          <input type="checkbox" id={metricName} name={metricName} value={metricName} />
+          <input type="checkbox" id={metricName} name={metricName} value={metric} data-dashboardName={dashboard} />
           <label htmlFor={metricName}>{metricName}</label>
         </div>
       );
     });
   })
+
+  const createNewProfile = async (e) => {
+    // Array of checked boxes
+    const checkedBoxes: HTMLInputElement[] = Array.from(document.querySelectorAll('input:checked'));
+
+    // Metrics will be an arry of objects with keys 'metric' and 'dashboard'
+    const metrics: {}[] = [];
+    checkedBoxes.forEach((checkedBoxElement) => {
+      metrics.push({
+        metric: checkedBoxElement.value,
+        dashboard: checkedBoxElement.dataset.dashboardname,
+      })
+    })
+
+    // Create post request to add new profile to DB
+    const response = await fetch('/api/profile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(metrics)
+    })
+
+    // TODO: Take response from, redirect to render the new profile.
+  }
 
   return (
     <div id="modalBackground">
@@ -31,7 +56,7 @@ function ProfileCreator({ setShowProfileCreator }) {
           {metricsOptionsElements}
         </div>
         <div className="buttonsContainer">
-          <div className="logoutButton button-17">Submit</div>
+          <div className="logoutButton button-17" onClick={createNewProfile}>Submit</div>
           <div className="cancelButton button-17" onClick={() => { setShowProfileCreator(false) }}>Cancel</div>
         </div>
       </div>

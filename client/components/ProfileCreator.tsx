@@ -3,7 +3,24 @@ import metricDetails from '../../metrics'
 
 function ProfileCreator({ setShowProfileCreator }) {
 
+  const metricsOptionsElements: React.ReactElement[] = [];
 
+  // For each dashboard in metrics obj
+  Object.keys(metricDetails).forEach((dashboard) => {
+    // For each metric inside that dashboard
+    Object.keys(metricDetails[dashboard]).forEach((metric) => {
+      // Pull the name of the metric
+      const metricName = metricDetails[dashboard][metric].name
+
+      //Push a checkbox with that name to the metricsOptionsElements array to be rendered
+      metricsOptionsElements.push(
+        <div className="checkboxContainer">
+          <input type="checkbox" id={metricName} name={metricName} value={metricName} />
+          <label htmlFor={metricName}>{metricName}</label>
+        </div>
+      );
+    });
+  })
 
   return (
     <div id="modalBackground">

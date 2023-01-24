@@ -8,7 +8,17 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  dashboardUId: {
+  nodeExporterUId: {
+    type: String,
+  },
+  prometheusUId: {
+    type: String,
+  },
+  kubeletUId: {
+    type: String,
+  },
+  
+  apiServerUId: {
     type: String,
   },
 

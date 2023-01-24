@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', grafanaController.getDashboards, (req: Request, res: Response) => {
   console.log('SUCCESSFULLY IN GRAFANA ROUTER');
-  res.status(200).json(res.locals.userDashboard);
+  res.status(200).json(res.locals.userInfo);
 })
 
 export default router;

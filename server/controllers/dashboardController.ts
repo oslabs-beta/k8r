@@ -12,8 +12,11 @@ const dashboardController = {
   updateUserDashboard: async (userId: string, dashboardUId: string): Promise<[]> => {
     try {
       // TODO: fix type any
-      const userInfo: any = await UserDashboards.findOne({ userId });
-
+      const filter = { userId: userId };
+      const update = {  }
+      const userInfo: any = await UserDashboards.findOneAndUpdate(filter, update, {
+        new: true,
+      });
       return userInfo;
     } catch (err) {
       createErrorObject(err);

@@ -9,7 +9,7 @@ const userSchema = new Schema({
     required: true,
   },
   dashboardUId: {
-    type: Array,
+    type: String,
   },
 
 });

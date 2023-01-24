@@ -45,18 +45,15 @@ const grafanaController = {
     const nodeDashboardUId: string = parsedRes[0].uid;
     const userId = req.cookies.id;
     console.log('res.cookies: ', req.cookies.id);
-    // need to implement conditional statement to check 
-    // if user exists in UserDashboards database and update/create new data entry accordingly
-    // const userDashboard = UserDashboards.create({
-    //   userId: req.cookies.id,
-    //   nodeUId: nodeDashboardUId,
-    // })
-    // res.locals.userDashboard = userDashboard;
-    if(UserDashboards.findOne(userId) === null) {
+    console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
+    if(await UserDashboards.findOne({ userId }) === null) {
+      console.log('inside conditional!');
       const userInfo = dashboardController.addUserDashboard(userId, nodeDashboardUId);
-    } else {
-      const userInfo = dashboardController.updateUserDashboard(userId, nodeDashboardUId);
-    }
+      res.locals.userInfo = userInfo;
+    } 
+    // else {
+    //   const userInfo = dashboardController.updateUserDashboard(userId, nodeDashboardUId);
+    // }
     const dbJson = await fs.readFile(dbFile, 'utf8');
     const db = JSON.parse(dbJson);
     db.nodeDashboardUId = nodeDashboardUId;

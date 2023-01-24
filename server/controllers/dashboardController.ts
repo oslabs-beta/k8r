@@ -9,6 +9,22 @@ const createErrorObject = (err) => {
 }
 const dashboardController = {
 
+   addUserDashboard: async (userId: string, nodeExporterUId: string, prometheusUId: string, kubeletUId: string, apiServerUId: string) => {
+    try {
+      const userInfo = await UserDashboards.create({
+        userId: userId,
+        nodeExporterUId: nodeExporterUId,
+        prometheusUId: prometheusUId,
+        kubeletUId: kubeletUId,
+        apiServerUId: apiServerUId,
+      });
+      return userInfo;
+    } catch (err) {
+      createErrorObject(err);
+      // Returning empty array to tell auth.ts that no user was found
+      return [];
+    }
+  },
   updateUserDashboard: async (userId: string, dashboardUId: string): Promise<[]> => {
     try {
       // TODO: fix type any
@@ -25,22 +41,7 @@ const dashboardController = {
     }
 
   },
-  addUserDashboard: async (userId: string, nodeExporterUId: string, prometheusUId: string, kubeletUId: string, apiServerUId: string) => {
-    try {
-      const userInfo = await UserDashboards.create({
-        userId: userId,
-        nodeExporterUId: nodeExporterUId,
-        prometheusUId: prometheusUId,
-        kubeletUId: kubeletUId,
-        apiServerUId: apiServerUId,
-      });
-      return userInfo;
-    } catch (err) {
-      createErrorObject(err);
-      // Returning empty array to tell auth.ts that no user was found
-      return [];
-    }
-  },
+ 
 
 }
 

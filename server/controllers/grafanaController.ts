@@ -34,10 +34,11 @@ const grafanaController = {
       prometheusUId: 'Prometheus%20/%20Overview',
       kubeletUId: 'Kubernetes%20/%20Kubelet',
       apiServerUId: 'Kubernetes%20/%20API%20Server',
-    }
-
+    };
+    let counter = 0;
     //Create org
     for(let key in dashboardUIds) {
+      console.log('HOW MANY TIMES WE GOTTA DO THIS: ', counter++);
       await fetch(
         `${grafanaUrl}/api/search?query=${dashboardUIds[key]}`,
         {
@@ -49,38 +50,29 @@ const grafanaController = {
           },
         }
       ).then((response) => response.json())
-       .then((data) => dashboardUIds[key] = data[0].uid);
+       .then((data) => {
+        if (data.length === 0) {
+          console.warn(`No dashboards found for ${dashboardUIds[key]}`)
+        } else {
+          dashboardUIds[key] = data[0].uid;
+        }
+      })
+       .catch((error) => {
+        console.error(`Error searching for ${dashboardUIds[key]}: ${error}`);
+        });
     }
     console.log('THIS IS DASHBOARDUIDS: ', dashboardUIds);
     const { nodeExporterUId, prometheusUId, kubeletUId, apiServerUId } = dashboardUIds;
-    // const dbRes = await fetch(
-    //   `${grafanaUrl}/api/search?query=Node%20Exporter%20/%20Nodes`,
-    //   {
-    //     method: 'GET',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Basic ${encodedCredentials}`,
-    //     },
-    //   }
-    // );
-    // const parsedRes = await dbRes.json();
-    // const nodeDashboardUId: string = parsedRes[0].uid;
+    
     const userId = req.cookies.id;
     console.log('res.cookies: ', req.cookies.id);
     console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
+    // checks if user already exists within UserDashboards collection
     if(await UserDashboards.findOne({ userId }) === null) {
       console.log('inside conditional!');
       const userInfo = dashboardController.addUserDashboard(userId, nodeExporterUId, prometheusUId, kubeletUId, apiServerUId);
       res.locals.userInfo = userInfo;
     }  
-    // else {
-    //   const userInfo = dashboardController.updateUserDashboard(userId, nodeDashboardUId);
-    // }
-    // const dbJson = await fs.readFile(dbFile, 'utf8');
-    // const db = JSON.parse(dbJson);
-    // db.nodeDashboardUId = nodeDashboardUId;
-    // await fs.writeFile(dbFile, JSON.stringify(db));
     next();
   },
 };

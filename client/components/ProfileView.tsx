@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/profileView.css'
 
 function ProfileView({ profileId }) {
@@ -16,9 +17,18 @@ function ProfileView({ profileId }) {
     getTileLinks();
   }, [tileLinksFetched])
 
+  const tileElements: React.ReactElement[] = [];
+  tileLinks.forEach(link => {
+    tileElements.push(
+      <div key={uuidv4()}>
+        <iframe src={link}></iframe>
+      </div>
+    )
+  });
+
   return (
     <div className="profileContainer">
-      {tileLinks}
+      {tileElements}
     </div>
   )
 }

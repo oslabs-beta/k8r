@@ -35,10 +35,9 @@ const grafanaController = {
       kubeletUId: 'Kubernetes%20/%20Kubelet',
       apiServerUId: 'Kubernetes%20/%20API%20Server',
     };
-    let counter = 0;
+
     //Create org
     for(let key in dashboardUIds) {
-      console.log('HOW MANY TIMES WE GOTTA DO THIS: ', counter++);
       await fetch(
         `${grafanaUrl}/api/search?query=${dashboardUIds[key]}`,
         {
@@ -61,6 +60,7 @@ const grafanaController = {
         console.error(`Error searching for ${dashboardUIds[key]}: ${error}`);
         });
     }
+    
     console.log('THIS IS DASHBOARDUIDS: ', dashboardUIds);
     const { nodeExporterUId, prometheusUId, kubeletUId, apiServerUId } = dashboardUIds;
     

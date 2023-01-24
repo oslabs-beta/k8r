@@ -10,7 +10,7 @@ router.get('/user', (req, res) => {
     userId = req.user[0]._id
   }
   userId ? res.cookie('id', userId) : null;
-  res.status(200).json(req.user ? req.user : null);
+  res.status(200).json(req.user ? req.user[0] : null);
 });
 
 router.get('/google', passport.authenticate('google', { scope: ['email'] }));

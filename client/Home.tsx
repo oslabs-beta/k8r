@@ -1,16 +1,12 @@
-import { useState, useEffect } from 'react'
-import './stylesheets/App.css'
+import './stylesheets/home.css'
 import Header from './components/Header'
 import MainContainer from './components/MainContainer'
 import NavBar from './components/NavBar'
-import LandingPage from './pages/LandingPage'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-function Home() {
-  console.log('home')
+function Home({ username, photo }) {
   return (
     <div className="App">
-      <Header />
+      <Header username={username} photo={photo} />
       <NavBar />
       <MainContainer />
     </div>

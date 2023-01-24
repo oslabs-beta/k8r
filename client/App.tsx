@@ -15,8 +15,8 @@ function App() {
       const response = await fetch('/auth/user')
       const parsedResponse = await response.json();
       if (parsedResponse) {
-        setUsername(parsedResponse.username);
-        setPhoto(parsedResponse.photo)
+        setUsername(parsedResponse.email.replace('@gmail.com', ''));
+        setPhoto(parsedResponse.profilePhoto)
         setUserAuthenticated(true);
       }
     }
@@ -31,8 +31,8 @@ function App() {
         :
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home username={username} photo={photo} />} />
+            <Route path="/home" element={<Home username={username} photo={photo} />} />
           </Routes>
         </BrowserRouter>
       }

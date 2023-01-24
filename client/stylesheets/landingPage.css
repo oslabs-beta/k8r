@@ -1,4 +1,5 @@
 .landingPage {
+  background-color: var(--K8RDarkBlue);
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr min-content 1fr;

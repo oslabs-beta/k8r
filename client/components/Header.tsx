@@ -1,9 +1,11 @@
 import '../stylesheets/header.css'
 
-function Header() {
+function Header({ username, photo }) {
   return (
     <div className="headerDiv">
       <div className="userProfileContainer">
+        <h3 className="userName">{username}</h3>
+        <img className="userPhoto" src={photo} alt="User Profile" referrerPolicy="no-referrer" />
       </div>
     </div>
   )

@@ -25,11 +25,14 @@ const dashboardController = {
     }
 
   },
-  addUserDashboard: async (userId: string, dashboardUId: string) => {
+  addUserDashboard: async (userId: string, nodeExporterUId: string, prometheusUId: string, kubeletUId: string, apiServerUId: string) => {
     try {
       const userInfo = await UserDashboards.create({
         userId: userId,
-        dashboardUId: dashboardUId,
+        nodeExporterUId: nodeExporterUId,
+        prometheusUId: prometheusUId,
+        kubeletUId: kubeletUId,
+        apiServerUId: apiServerUId,
       });
       return userInfo;
     } catch (err) {

@@ -29,35 +29,58 @@ const grafanaController = {
     // Encode username and password (required to send via fetch)
     const encodedCredentials = btoa(`${username}:${password}`);
 
+    const dashboardUIds = {
+      nodeExporterUId: 'Node%20Exporter%20/%20Nodes',
+      prometheusUId: 'Prometheus%20/%20Overview',
+      kubeletUId: 'Kubernetes%20/%20Kubelet',
+      apiServerUId: 'Kubernetes%20/%20API%20Server',
+    }
+
     //Create org
-    const dbRes = await fetch(
-      `${grafanaUrl}/api/search?query=Node%20Exporter%20/%20Nodes`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${encodedCredentials}`,
-        },
-      }
-    );
-    const parsedRes = await dbRes.json();
-    const nodeDashboardUId: string = parsedRes[0].uid;
+    for(let key in dashboardUIds) {
+      await fetch(
+        `${grafanaUrl}/api/search?query=${dashboardUIds[key]}`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Basic ${encodedCredentials}`,
+          },
+        }
+      ).then((response) => response.json())
+       .then((data) => dashboardUIds[key] = data[0].uid);
+    }
+    console.log('THIS IS DASHBOARDUIDS: ', dashboardUIds);
+    const { nodeExporterUId, prometheusUId, kubeletUId, apiServerUId } = dashboardUIds;
+    // const dbRes = await fetch(
+    //   `${grafanaUrl}/api/search?query=Node%20Exporter%20/%20Nodes`,
+    //   {
+    //     method: 'GET',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Basic ${encodedCredentials}`,
+    //     },
+    //   }
+    // );
+    // const parsedRes = await dbRes.json();
+    // const nodeDashboardUId: string = parsedRes[0].uid;
     const userId = req.cookies.id;
     console.log('res.cookies: ', req.cookies.id);
     console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
     if(await UserDashboards.findOne({ userId }) === null) {
       console.log('inside conditional!');
-      const userInfo = dashboardController.addUserDashboard(userId, nodeDashboardUId);
+      const userInfo = dashboardController.addUserDashboard(userId, nodeExporterUId, prometheusUId, kubeletUId, apiServerUId);
       res.locals.userInfo = userInfo;
-    } 
+    }  
     // else {
     //   const userInfo = dashboardController.updateUserDashboard(userId, nodeDashboardUId);
     // }
-    const dbJson = await fs.readFile(dbFile, 'utf8');
-    const db = JSON.parse(dbJson);
-    db.nodeDashboardUId = nodeDashboardUId;
-    await fs.writeFile(dbFile, JSON.stringify(db));
+    // const dbJson = await fs.readFile(dbFile, 'utf8');
+    // const db = JSON.parse(dbJson);
+    // db.nodeDashboardUId = nodeDashboardUId;
+    // await fs.writeFile(dbFile, JSON.stringify(db));
     next();
   },
 };

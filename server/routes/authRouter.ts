@@ -25,14 +25,14 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 router.get('/failure', (request, response) => {
   response.send('authentication failed...');
 });
-// TODO: add comments about login, logout being set by passport
-// https://www.passportjs.org/concepts/authentication/login/
+
 router.get('/logout', (request, response) => {
   request.logout(() => {
-    // https://stackoverflow.com/questions/72336177/error-reqlogout-requires-a-callback-function
     console.log('logging out');
-    // request.session.destroy(); // destroy cookie?
-    response.redirect('/');
+    // Destroy cookie and then redirect to the home page
+    request.session.destroy(() => {
+      response.redirect('/');
+    });
   });
 });
 

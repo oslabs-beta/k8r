@@ -27,11 +27,11 @@ function ProfileSelector({ setCurrentProfileId, setShowProfileSelector }) {
 
   return (
     <div id="modalBackground">
-      <div className='profileSelectorModal'>
+      <div className="profileSelectorModal">
         {profileElements}
-      </div>
-      <div className="buttonsContainer">
-        <div className="cancelButton button-17" onClick={() => { setShowProfileSelector(false) }}>Cancel</div>
+        <div className="buttonsContainer">
+          <div className="cancelButton button-17" onClick={() => { setShowProfileSelector(false) }}>Cancel</div>
+        </div>
       </div>
     </div>
   );

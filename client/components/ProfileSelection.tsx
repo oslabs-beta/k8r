@@ -7,7 +7,7 @@ function ProfileSelection({ setCurrentProfileId, profileName, profileId }) {
   }
 
   return (
-    <div className="profileSelection" onClick={clickSelection}>{profileName}</div>
+    <div className="profileSelection" onClick={clickSelection} className="button-17">{profileName}</div>
   );
 }
 

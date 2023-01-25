@@ -358,4 +358,4 @@ const allMetrics = {
 
 export default allMetrics;
 
-// Sample reference: metricDetails.nodeMetrics.cpuUsage
+// Sample reference: allMetrics.cpuUsage

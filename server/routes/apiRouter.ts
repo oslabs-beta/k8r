@@ -12,4 +12,12 @@ router.post('/createProfile', profileController.createProfile, (req: Request, re
   res.status(200).json(res.locals.profileInfo);
 })
 
+router.get('/getAllProfiles', profileController.getAllProfiles, (req: Request, res: Response) => {
+  res.status(200).json(res.locals.allProfiles);
+})
+
+router.post(`/getProfileDetails:profileId`, profileController.getProfileDetails, (req: Request, res: Response) => {
+  res.status(200).json(res.locals.profileDetails);
+})
+
 export default router;

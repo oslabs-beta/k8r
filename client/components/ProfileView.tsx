@@ -31,10 +31,13 @@ function ProfileView({ profileId, dashboardUIds }) {
   //   );
   // });
 
+
+
   const metrics = ['cpuUsage', 'loadAverage'];
 
   useEffect(() => {
     if (dashboardUIds) {
+
       const newTiles: ReactElement[] = [];
       metrics.forEach((metric) => {
         const grafanaPanelUrl = linkGenerator(dashboardUIds, metric);

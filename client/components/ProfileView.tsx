@@ -31,20 +31,25 @@ function ProfileView({ profileId, dashboardUIds }) {
   //   );
   // });
 
-
-
-  const metrics = ['cpuUsage', 'loadAverage'];
-
   useEffect(() => {
-    if (dashboardUIds) {
 
+    async function generateTiles() {
+      const response = await fetch(`/api/getProfileDetails/${profileId}`)
+      const profileDetails = await response.json();
+      console.log(profileDetails)
       const newTiles: ReactElement[] = [];
-      metrics.forEach((metric) => {
+      profileDetails.metricsArray.forEach((metric) => {
         const grafanaPanelUrl = linkGenerator(dashboardUIds, metric);
         newTiles.push(<Tile key={uuidv4()} grafanaPanelUrl={grafanaPanelUrl} />);
       })
       setTiles(newTiles);
     }
+
+    // If dashboardUids fetch has completed
+    if (dashboardUIds) {
+      generateTiles();
+    }
+
   }, [dashboardUIds]);
 
   return (

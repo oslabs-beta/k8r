@@ -37,9 +37,8 @@ const profileController = {
   },
   getProfileDetails: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userId = req.cookies.id;
       const profileId = req.params.profileId;
-      const profileDetails = await Profile.findOne({ profileId })
+      const profileDetails = await Profile.findOne({ _id: profileId })
       res.locals.profileDetails = profileDetails;
       return next();
     } catch (err) {

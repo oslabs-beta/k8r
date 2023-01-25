@@ -16,7 +16,7 @@ router.get('/getAllProfiles', profileController.getAllProfiles, (req: Request, r
   res.status(200).json(res.locals.allProfiles);
 })
 
-router.post(`/getProfileDetails:profileId`, profileController.getProfileDetails, (req: Request, res: Response) => {
+router.get('/getProfileDetails/:profileId', profileController.getProfileDetails, (req: Request, res: Response) => {
   res.status(200).json(res.locals.profileDetails);
 })
 

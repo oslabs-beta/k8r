@@ -11,7 +11,7 @@ function MainContainer({ dashboardUIds }) {
         alt='K8R Logo'
       />
       <div className='profileCard'>
-        <ProfileView dashboardUIds={dashboardUIds} profileId={''} />
+        <ProfileView dashboardUIds={dashboardUIds} profileId={'63d1a807c4df71aa0b246a7e'} />
       </div>
     </div>
   );

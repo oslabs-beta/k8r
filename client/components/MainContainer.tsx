@@ -2,7 +2,7 @@ import '../stylesheets/mainContainer.css';
 import logoSquareTransparent from '../assets/logoSquareTransparent.png';
 import ProfileView from './ProfileView';
 
-function MainContainer() {
+function MainContainer({ dashboardUIds }) {
   return (
     <div className='mainContainer'>
       <img
@@ -11,7 +11,7 @@ function MainContainer() {
         alt='K8R Logo'
       />
       <div className='profileCard'>
-        <ProfileView profileId={''} />
+        <ProfileView dashboardUIds={dashboardUIds} profileId={''} />
       </div>
     </div>
   );

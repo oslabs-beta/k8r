@@ -378,7 +378,9 @@ export function linkGenerator(dashboardUIDs: DashboardUIds, metric: string, graf
 
   // TODO: Add time filters.
   // Time increments are at the end of the link like this: viewPanel=3&from=1674667203832&to=1674670803832
-  // Time is in milliseconds. If no time is given, the panel defaults to the last hour.
+  // Time is in milliseconds. If no time is given, the panel defaults to the last hour
+
+  console.log(dashboardUIDs)
 
   // Get dashboard UID for the appropriate dashboard for that metric
   const dashboardUid: string = dashboardUIDs[dashboards[allMetrics[metric].dashboard].dashboardUIdKey];

@@ -23,7 +23,7 @@ function Home({ username, photo }) {
     <div className="App">
       <Header username={username} photo={photo} />
       <NavBar />
-      <MainContainer />
+      <MainContainer dashboardUIds={dashboardUIds} />
     </div>
   )
 }

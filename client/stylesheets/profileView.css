@@ -1,0 +1,9 @@
+.profileContainer {
+  display: flex;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+.tile {
+  flex: 1;
+}

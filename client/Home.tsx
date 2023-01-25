@@ -3,10 +3,12 @@ import Header from './components/Header'
 import MainContainer from './components/MainContainer'
 import NavBar from './components/NavBar'
 import { useEffect, useState } from 'react'
+import ProfileSelector from './components/ProfileSelector'
 
 function Home({ username, photo }) {
   const [dashboardUIds, setDashboardUIds] = useState(null)
   const [dashboardUIdsFetched, setDashboardUIdsFetched] = useState(false)
+  const [currentProfileId, setCurrentProfileId] = useState('')
 
   useEffect(() => {
     // Get dashboard UIds and store them in state for link population.
@@ -22,8 +24,8 @@ function Home({ username, photo }) {
   return (
     <div className="App">
       <Header username={username} photo={photo} />
-      <NavBar />
-      <MainContainer dashboardUIds={dashboardUIds} />
+      <NavBar setCurrentProfileId={setCurrentProfileId} />
+      <MainContainer dashboardUIds={dashboardUIds} currentProfileId={currentProfileId} />
     </div>
   )
 }

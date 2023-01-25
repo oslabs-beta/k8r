@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/profileCreator.css'
 import allMetrics from '../../metrics'
 
@@ -12,7 +13,7 @@ function ProfileCreator({ setShowProfileCreator }) {
 
     //Push a checkbox with that name to the metricsOptionsElements array to be rendered
     metricsOptionsElements.push(
-      <div className="checkboxContainer">
+      <div key={uuidv4()} className="checkboxContainer">
         <input type="checkbox" id={metricName} name={metricName} value={metric} />
         <label htmlFor={metricName}>{metricName}</label>
       </div>
@@ -22,7 +23,7 @@ function ProfileCreator({ setShowProfileCreator }) {
   const createNewProfile = async (e) => {
     // Array of checked boxes
     const checkedBoxes: HTMLInputElement[] = Array.from(document.querySelectorAll('input:checked'));
-    const profileName: String | null | undefined = document.querySelector('.profileNameInput')?.ariaValueMax;
+    const profileName: String = (document.querySelector('.profileNameInput') as HTMLInputElement).value;
 
     // Metrics will be an array of metric objects
     const metrics: String[] = [];
@@ -43,8 +44,9 @@ function ProfileCreator({ setShowProfileCreator }) {
       },
       body: JSON.stringify(bodyObj)
     })
-    const parsedResponse = response.json();
+    const parsedResponse = await response.json();
     const profileId = parsedResponse._id;
+    console.log(profileId);
 
     // TODO: Take response from, redirect to render the new profile.
   }

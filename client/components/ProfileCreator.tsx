@@ -46,7 +46,6 @@ function ProfileCreator({ setShowProfileCreator }) {
     })
     const parsedResponse = await response.json();
     const profileId = parsedResponse._id;
-    console.log(profileId);
 
     // TODO: Take response from, redirect to render the new profile.
   }

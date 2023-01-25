@@ -15,7 +15,7 @@ function NavBar({ setCurrentProfileId }) {
   return (
     <>
       {showProfileCreator ? <ProfileCreator setShowProfileCreator={setShowProfileCreator} /> : null}
-      {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileSelector={setShowProfileSelector} /> : null}
+      {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileCreator={setShowProfileCreator} setShowProfileSelector={setShowProfileSelector} /> : null}
       <div className="navBar">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton navBarHomeButton">

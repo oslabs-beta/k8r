@@ -13,7 +13,6 @@ router.post('/createProfile', profileController.createProfile, (req: Request, re
 })
 
 router.get('/getAllProfiles', profileController.getAllProfiles, (req: Request, res: Response) => {
-  console.log('in get all profiles ', res.locals.allProfiles)
   res.status(200).json(res.locals.allProfiles);
 })
 

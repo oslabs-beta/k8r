@@ -1,13 +1,12 @@
-// import '../stylesheets/tile.css';
+function ProfileSelection({ setCurrentProfileId, setShowProfileSelector, profileName, profileId }) {
 
-function ProfileSelection({ setCurrentProfileId, profileName, profileId }) {
-
-  function clickSelection() {
-    setCurrentProfileId(profileId)
+  function renderNewProfile() {
+    setCurrentProfileId(profileId);
+    setShowProfileSelector(false);
   }
 
   return (
-    <div className="profileSelection button-17" onClick={clickSelection}>{profileName}</div>
+    <div className="profileSelection button-17" onClick={renderNewProfile}>{profileName}</div>
   );
 }
 

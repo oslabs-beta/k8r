@@ -1,39 +1,39 @@
 import '../stylesheets/profileCreator.css'
-import metricDetails from '../../metrics'
+import allMetrics from '../../metrics'
 
 function ProfileCreator({ setShowProfileCreator }) {
 
   const metricsOptionsElements: React.ReactElement[] = [];
 
-  // For each dashboard in metrics obj
-  Object.keys(metricDetails).forEach((dashboard) => {
-    // For each metric inside that dashboard
-    Object.keys(metricDetails[dashboard]).forEach((metric) => {
-      // Pull the name of the metric
-      const metricName = metricDetails[dashboard][metric].name
+  // For each metric
+  Object.keys(allMetrics).forEach((metric) => {
+    // Pull the name of the metric
+    const metricName = allMetrics[metric].fullName
 
-      //Push a checkbox with that name to the metricsOptionsElements array to be rendered
-      metricsOptionsElements.push(
-        <div className="checkboxContainer">
-          <input type="checkbox" id={metricName} name={metricName} value={metric} data-dashboardName={dashboard} />
-          <label htmlFor={metricName}>{metricName}</label>
-        </div>
-      );
-    });
-  })
+    //Push a checkbox with that name to the metricsOptionsElements array to be rendered
+    metricsOptionsElements.push(
+      <div className="checkboxContainer">
+        <input type="checkbox" id={metricName} name={metricName} value={metric} />
+        <label htmlFor={metricName}>{metricName}</label>
+      </div>
+    );
+  });
 
   const createNewProfile = async (e) => {
     // Array of checked boxes
     const checkedBoxes: HTMLInputElement[] = Array.from(document.querySelectorAll('input:checked'));
+    const profileName: String | null | undefined = document.querySelector('.profileNameInput')?.ariaValueMax;
 
-    // Metrics will be an arry of objects with keys 'metric' and 'dashboard'
-    const metrics: {}[] = [];
+    // Metrics will be an array of metric objects
+    const metrics: String[] = [];
     checkedBoxes.forEach((checkedBoxElement) => {
-      metrics.push({
-        metric: checkedBoxElement.value,
-        dashboard: checkedBoxElement.dataset.dashboardname,
-      })
+      metrics.push(checkedBoxElement.value)
     })
+
+    const bodyObj = {
+      profileName,
+      metrics
+    }
 
     // Create post request to add new profile to DB
     const response = await fetch('/api/createProfile', {
@@ -41,8 +41,10 @@ function ProfileCreator({ setShowProfileCreator }) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(metrics)
+      body: JSON.stringify(bodyObj)
     })
+    const parsedResponse = response.json();
+    const profileId = parsedResponse._id;
 
     // TODO: Take response from, redirect to render the new profile.
   }

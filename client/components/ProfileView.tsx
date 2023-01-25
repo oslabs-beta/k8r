@@ -29,6 +29,10 @@ function ProfileView({ profileId }) {
   return (
     <div className='profileContainer'>
       {/* {tileElements} */}
+
+      {/* Temp iFrame */}
+      <iframe src="http://localhost:3000/d-solo/2O9SNYo4k/node-exporter-nodes?orgId=1&refresh=30s&theme=light&panelId=5" />
+
     </div>
   );
 }

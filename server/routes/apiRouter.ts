@@ -3,8 +3,7 @@ import grafanaController from '../controllers/grafanaController';
 
 const router = express.Router();
 
-router.get('/', grafanaController.getDashboards, (req: Request, res: Response) => {
-  console.log('SUCCESSFULLY IN GRAFANA ROUTER');
+router.get('/getDashboardUIds', grafanaController.getDashboards, (req: Request, res: Response) => {
   res.status(200).json(res.locals.userDbUIds);
 })
 

@@ -36,7 +36,7 @@ function ProfileCreator({ setShowProfileCreator }) {
     })
 
     // Create post request to add new profile to DB
-    const response = await fetch('/api/profile', {
+    const response = await fetch('/api/createProfile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

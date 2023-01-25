@@ -31,18 +31,18 @@ function ProfileView({ profileId, dashboardUIds }) {
   //   );
   // });
 
-  const metrics = ['cpuUsage', 'loadAverage']
+  const metrics = ['cpuUsage', 'loadAverage'];
 
   useEffect(() => {
     if (dashboardUIds) {
       const newTiles: ReactElement[] = [];
       metrics.forEach((metric) => {
-        const link = linkGenerator(dashboardUIds, metric)
-        newTiles.push(<Tile key={uuidv4()} link={link} />)
+        const grafanaPanelUrl = linkGenerator(dashboardUIds, metric);
+        newTiles.push(<Tile key={uuidv4()} grafanaPanelUrl={grafanaPanelUrl} />);
       })
-      setTiles(newTiles)
+      setTiles(newTiles);
     }
-  }, [dashboardUIds])
+  }, [dashboardUIds]);
 
   return (
     <div className='profileContainer'>

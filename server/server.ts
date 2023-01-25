@@ -35,7 +35,6 @@ app.use(
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 
-
 //route for url not existed
 app.use((req: Request, res: Response) => {
   res.status(404).send('This is not the page you\'re looking for...')

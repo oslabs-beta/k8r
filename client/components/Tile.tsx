@@ -1,8 +1,8 @@
 // import '../stylesheets/tile.css';
 
-function Tile({ link }) {
+function Tile({ grafanaPanelUrl }) {
   return (
-    <iframe src={link} className="tile" />
+    <iframe src={grafanaPanelUrl} className="tile" />
   );
 }
 

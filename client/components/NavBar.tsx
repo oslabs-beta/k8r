@@ -5,14 +5,17 @@ import { BsPeopleFill, BsSearch } from 'react-icons/bs';
 import K8RLogoSquare from '../assets/logoSquare.png'
 import { useState } from 'react';
 import ProfileCreator from './ProfileCreator';
+import ProfileSelector from './ProfileSelector'
 
 
-function NavBar() {
-  const [showProfileCreator, setShowProfileCreator] = useState(false)
+function NavBar({ setCurrentProfileId }) {
+  const [showProfileCreator, setShowProfileCreator] = useState(false);
+  const [showProfileSelector, setShowProfileSelector] = useState(false);
 
   return (
     <>
       {showProfileCreator ? <ProfileCreator setShowProfileCreator={setShowProfileCreator} /> : null}
+      {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileSelector={setShowProfileSelector} /> : null}
       <div className="navBar">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton navBarHomeButton">
@@ -28,7 +31,7 @@ function NavBar() {
           <AiOutlineShareAlt />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">
-          <BsPeopleFill />
+          <BsPeopleFill onClick={() => { setShowProfileSelector(true) }} />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">
           <AiFillSetting />

@@ -1,0 +1,13 @@
+.profileContainer {
+  display: flex;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 30px;
+  gap: 30px;
+}
+
+.tile {
+  flex: 1;
+  border: 1px solid black;
+  border-radius: 10px;
+}

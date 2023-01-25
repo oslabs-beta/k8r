@@ -1,5 +1,5 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
-import grafanaRouter from './routes/grafanaRouter';
+import apiRouter from './routes/apiRouter';
 import authRouter from './routes/authRouter';
 import connectDB from './db/db';
 import passport from 'passport'
@@ -32,11 +32,8 @@ app.use(
   })
 );
 
-
-
 app.use('/auth', authRouter);
-app.use('/grafana', grafanaRouter);
-
+app.use('/api', apiRouter);
 
 //route for url not existed
 app.use((req: Request, res: Response) => {

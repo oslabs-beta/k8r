@@ -1,4 +1,3 @@
-import path from 'path';
 import express, {
   Express,
   Request,
@@ -6,17 +5,10 @@ import express, {
   ErrorRequestHandler,
   NextFunction,
 } from 'express';
-import { fileURLToPath } from 'url';
-import fs from 'fs/promises';
+
 import UserDashboards from '../models/userDashboards';
 import dashboardController from './dashboardController';
-// import { readFile, writeFile } from 'fs/promises'
-// const fsTemp = fs.promises;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const dbFile = path.resolve(__dirname, '../db/db.json');
+import { DBUIds } from '../../types'
 
 const grafanaUrl = 'http://localhost:3000';
 const username = 'admin';
@@ -29,53 +21,57 @@ const grafanaController = {
     // Encode username and password (required to send via fetch)
     const encodedCredentials = btoa(`${username}:${password}`);
 
-    const dashboardUIds = {
+    const dashboardSearchStrings = {
       nodeExporterUId: 'Node%20Exporter%20/%20Nodes',
       prometheusUId: 'Prometheus%20/%20Overview',
       kubeletUId: 'Kubernetes%20/%20Kubelet',
       apiServerUId: 'Kubernetes%20/%20API%20Server',
     };
 
+    const dbUIds: DBUIds = {};
+
     const userId = req.cookies.id;
-    console.log('res.cookies: ', req.cookies.id);
-    console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
-    if(await UserDashboards.findOne({ userId }) === null) {
-      // checks if user already exists within UserDashboards collection
-      console.log('inside conditional!');
 
-    //Create org
-    for(let key in dashboardUIds) {
-      await fetch(
-        `${grafanaUrl}/api/search?query=${dashboardUIds[key]}`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Basic ${encodedCredentials}`,
-          },
-        }
-      ).then((response) => response.json())
-       .then((data) => {
-        if (data.length === 0) {
-          console.warn(`No dashboards found for ${dashboardUIds[key]}`)
-        } else {
-          dashboardUIds[key] = data[0].uid;
-        }
-      })
-       .catch((error) => {
-        console.error(`Error searching for ${dashboardUIds[key]}: ${error}`);
-        });
-    }
+    const userDashboards = await UserDashboards.findOne({ userId })
 
-    console.log('THIS IS DASHBOARDUIDS: ', dashboardUIds);
-    const { nodeExporterUId, prometheusUId, kubeletUId, apiServerUId } = dashboardUIds;
+    // If user already exists in the UserDashboards db
+    if (userDashboards) {
+      res.locals.userDbUIds = userDashboards;
+    } else {
+      // If user does not already exist
+
+      async function fetchFromGrafana() {
+        const dbUIds: DBUIds = {};
+        for (let key in dashboardSearchStrings) {
+          // Get dashboard UId from grafana API
+          try {
+            const response = await fetch(
+              `${grafanaUrl}/api/search?query=${dashboardSearchStrings[key]}`,
+              {
+                method: 'GET',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  Authorization: `Basic ${encodedCredentials}`,
+                },
+              }
+            )
+            const parsedResponse = await response.json();
+            // For each dashboard, add to dbUids key=dashboard and value=dashboardUid
+            dbUIds[key] = parsedResponse[0].uid;
+
+          }
+          catch (error) {
+            console.error(`Error searching for ${dashboardSearchStrings[key]}: ${error}`);
+          };
+        }
+        return dbUIds;
+      }
+      const dbUIds = await fetchFromGrafana();
+
+      const { nodeExporterUId, prometheusUId, kubeletUId, apiServerUId } = dbUIds;
       const userDbUIds = await dashboardController.addUserDashboard(userId, nodeExporterUId, prometheusUId, kubeletUId, apiServerUId);
       res.locals.userDbUIds = userDbUIds;
-    } else {
-      const userDbUIds = await dashboardController.getUserDashboard(userId);
-      res.locals.userDbUIds = userDbUIds;
-      console.log('RES.LOCALS.USERDBUIDS: ', res.locals.userDbUIds);
     }
     next();
   },

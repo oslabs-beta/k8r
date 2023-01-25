@@ -9,24 +9,9 @@ const createErrorObject = (err) => {
 }
 const dashboardController = {
 
-  updateUserDashboard: async (userId: string, dashboardUId: string): Promise<[]> => {
+   addUserDashboard: async (userId: string, nodeExporterUId: string, prometheusUId: string, kubeletUId: string, apiServerUId: string) => {
     try {
-      // TODO: fix type any
-      const filter = { userId: userId };
-      const update = {  }
-      const userInfo: any = await UserDashboards.findOneAndUpdate(filter, update, {
-        new: true,
-      });
-      return userInfo;
-    } catch (err) {
-      createErrorObject(err);
-      // Returning empty array to tell auth.ts that no user was found
-      return [];
-    }
-
-  },
-  addUserDashboard: async (userId: string, nodeExporterUId: string, prometheusUId: string, kubeletUId: string, apiServerUId: string) => {
-    try {
+      console.log('Inside of addUserDashboard!!!');
       const userInfo = await UserDashboards.create({
         userId: userId,
         nodeExporterUId: nodeExporterUId,
@@ -35,6 +20,17 @@ const dashboardController = {
         apiServerUId: apiServerUId,
       });
       return userInfo;
+    } catch (err) {
+      createErrorObject(err);
+      // Returning empty array to tell auth.ts that no user was found
+      return [];
+    }
+  },
+  getUserDashboard: async (userId: string) => {
+    try {
+      const user = await UserDashboards.findOne({ userId })
+      console.log("Inside of getUserDashboard!:", user);
+      return user;
     } catch (err) {
       createErrorObject(err);
       // Returning empty array to tell auth.ts that no user was found

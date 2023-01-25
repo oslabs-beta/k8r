@@ -34,7 +34,14 @@ const grafanaController = {
       prometheusUId: 'Prometheus%20/%20Overview',
       kubeletUId: 'Kubernetes%20/%20Kubelet',
       apiServerUId: 'Kubernetes%20/%20API%20Server',
-    }
+    };
+
+    const userId = req.cookies.id;
+    console.log('res.cookies: ', req.cookies.id);
+    console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
+    if(await UserDashboards.findOne({ userId }) === null) {
+      // checks if user already exists within UserDashboards collection
+      console.log('inside conditional!');
 
     //Create org
     for(let key in dashboardUIds) {
@@ -49,38 +56,27 @@ const grafanaController = {
           },
         }
       ).then((response) => response.json())
-       .then((data) => dashboardUIds[key] = data[0].uid);
+       .then((data) => {
+        if (data.length === 0) {
+          console.warn(`No dashboards found for ${dashboardUIds[key]}`)
+        } else {
+          dashboardUIds[key] = data[0].uid;
+        }
+      })
+       .catch((error) => {
+        console.error(`Error searching for ${dashboardUIds[key]}: ${error}`);
+        });
     }
+
     console.log('THIS IS DASHBOARDUIDS: ', dashboardUIds);
     const { nodeExporterUId, prometheusUId, kubeletUId, apiServerUId } = dashboardUIds;
-    // const dbRes = await fetch(
-    //   `${grafanaUrl}/api/search?query=Node%20Exporter%20/%20Nodes`,
-    //   {
-    //     method: 'GET',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Basic ${encodedCredentials}`,
-    //     },
-    //   }
-    // );
-    // const parsedRes = await dbRes.json();
-    // const nodeDashboardUId: string = parsedRes[0].uid;
-    const userId = req.cookies.id;
-    console.log('res.cookies: ', req.cookies.id);
-    console.log('checking return value of UserDashboards.findOne:', await UserDashboards.findOne({ userId }));
-    if(await UserDashboards.findOne({ userId }) === null) {
-      console.log('inside conditional!');
-      const userInfo = dashboardController.addUserDashboard(userId, nodeExporterUId, prometheusUId, kubeletUId, apiServerUId);
-      res.locals.userInfo = userInfo;
-    }  
-    // else {
-    //   const userInfo = dashboardController.updateUserDashboard(userId, nodeDashboardUId);
-    // }
-    // const dbJson = await fs.readFile(dbFile, 'utf8');
-    // const db = JSON.parse(dbJson);
-    // db.nodeDashboardUId = nodeDashboardUId;
-    // await fs.writeFile(dbFile, JSON.stringify(db));
+      const userDbUIds = await dashboardController.addUserDashboard(userId, nodeExporterUId, prometheusUId, kubeletUId, apiServerUId);
+      res.locals.userDbUIds = userDbUIds;
+    } else {
+      const userDbUIds = await dashboardController.getUserDashboard(userId);
+      res.locals.userDbUIds = userDbUIds;
+      console.log('RES.LOCALS.USERDBUIDS: ', res.locals.userDbUIds);
+    }
     next();
   },
 };

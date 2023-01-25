@@ -23,19 +23,7 @@ const dashboardController = {
     } catch (err) {
       createErrorObject(err);
     }
-  },
-  getUserDashboard: async (userId: string) => {
-    try {
-      const user = await UserDashboards.findOne({ userId })
-      console.log("Inside of getUserDashboard!:", user);
-      return user;
-    } catch (err) {
-      createErrorObject(err);
-      // Returning empty array to tell auth.ts that no user was found
-      return [];
-    }
-  },
-
+  }
 }
 
 export default dashboardController;

@@ -2,7 +2,7 @@
 
 function Tile({ link }) {
   return (
-    <iframe src={link} />
+    <iframe src={link} className="tile" />
   );
 }
 

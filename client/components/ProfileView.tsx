@@ -6,7 +6,7 @@ import '../stylesheets/profileView.css';
 
 function ProfileView({ profileId, dashboardUIds }) {
 
-  const [tiles, setTiles] = useState([])
+  const [tiles, setTiles] = useState<ReactElement[]>([])
 
   // const [tileLinks, setTileLinks] = useState([]);
   // const [tileLinksFetched, setTilesLinksFetched] = useState(false);
@@ -34,12 +34,14 @@ function ProfileView({ profileId, dashboardUIds }) {
   const metrics = ['cpuUsage', 'loadAverage']
 
   useEffect(() => {
-    metrics.forEach((metric) => {
-      const link = linkGenerator(dashboardUIds, metric)
-      const newTiles = [...tiles];
-      newTiles.push(<Tile link={link} className="tile" />)
+    if (dashboardUIds) {
+      const newTiles: ReactElement[] = [];
+      metrics.forEach((metric) => {
+        const link = linkGenerator(dashboardUIds, metric)
+        newTiles.push(<Tile key={uuidv4()} link={link} />)
+      })
       setTiles(newTiles)
-    })
+    }
   }, [dashboardUIds])
 
   return (

@@ -8,6 +8,15 @@
 
 .tile {
   flex: 1;
+  justify-self: center;
+  align-self: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 400px;
+}
+
+.dashboard {
+  flex: 1;
   border: 1px solid black;
   border-radius: 10px;
 }

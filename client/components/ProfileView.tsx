@@ -27,7 +27,7 @@ function ProfileView({ profileId, dashboardUIds }) {
       }
       // If no profileId is supplied, display default dashboard
       else {
-        const dashboardEl = <iframe className="tile" src={`http://localhost:3000/d/${dashboardUIds.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+        const dashboardEl = <iframe className="dashboard" src={`http://localhost:3000/d/${dashboardUIds.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
         const newTilesArr: ReactElement[] = [];
         newTilesArr.push(dashboardEl);
         setTiles(newTilesArr);

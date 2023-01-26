@@ -1,9 +1,9 @@
 .profileContainer {
   display: flex;
   box-sizing: border-box;
-  min-height: 100%;
   padding: 30px;
   gap: 30px;
+  min-height: 100%;
 }
 
 .tile {

@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap');
+
+:root {
+  --K8RDarkBlue: rgb(0, 0, 56);
+  --K8RDarkBlueTransparent: rgb(0, 0, 56, 0.5);
+  --K8RLightBlue: rgb(0, 180, 216);
+  --K8RPeach: rgb(255, 115, 93);
+  --K8RPink: rgb(208, 6, 131);
+  --K8RHeadingFont: 'Poppins', sans-serif;
+  --K8RFont: 'Open Sans', sans-serif;
+}
+
+#root {
+  background-color: rgba(0, 180, 216, 0.1);
+  min-width: 100vh;
+  min-height: 100vh;
+  font-family: var(--K8RFont);
+}

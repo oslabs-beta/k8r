@@ -1,0 +1,9 @@
+.App {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
+  grid-template-areas:
+    "navBar header"
+    "navBar mainContainer"
+}

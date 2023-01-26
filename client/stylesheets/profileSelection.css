@@ -1,0 +1,25 @@
+.profileSelectionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.newProfileSelectionContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileSelection,
+.newProfileSelector {
+  flex: 1;
+}
+
+.newProfileSelector {
+  font-weight: 700;
+}
+
+.profileSelectionContainer svg {
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+.navBar {
+  grid-area: navBar;
+  box-sizing: border-box;
+  background-color: var(--K8RDarkBlue);
+  min-height: 100vh;
+  padding: 15px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navBarLogo {
+  width: 100px;
+  position: absolute;
+  top: 0;
+}
+
+.navBarButton {
+  color: var(--K8RPeach);
+  font-size: 40px;
+}
+
+.navBarButton:hover {
+  transition: 0.2s;
+  transform: scale(1.15);
+  color: var(--K8RLightBlue);
+  cursor: pointer;
+}

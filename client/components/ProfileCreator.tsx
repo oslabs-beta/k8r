@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/profileCreator.css'
 import allMetrics from '../../metrics'
 
-function ProfileCreator({ setShowProfileCreator }) {
+function ProfileCreator({ setShowProfileCreator, setCurrentProfileId }) {
 
   const metricsOptionsElements: React.ReactElement[] = [];
 
@@ -45,9 +45,15 @@ function ProfileCreator({ setShowProfileCreator }) {
       body: JSON.stringify(bodyObj)
     })
     const parsedResponse = await response.json();
+
+    //Profile ID of the new profile just created
     const profileId = parsedResponse._id;
 
-    // TODO: Take response from, redirect to render the new profile.
+    // Reset current profile ID to immediately render new profile to Profile View component
+    setCurrentProfileId(profileId);
+
+    // Close ProfileCreator component.
+    setShowProfileCreator(false);
   }
 
   return (

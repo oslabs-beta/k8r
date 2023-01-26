@@ -20,4 +20,8 @@ router.get('/getProfileDetails/:profileId', profileController.getProfileDetails,
   res.status(200).json(res.locals.profileDetails);
 })
 
+router.delete('/deleteProfile/:profileId', profileController.deleteProfile, (req: Request, res: Response) => {
+  res.status(200).json(res.locals.deletedProfile);
+})
+
 export default router;

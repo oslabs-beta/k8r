@@ -18,10 +18,12 @@ function ProfileSelector({ setCurrentProfileId, setShowProfileSelector, setShowP
 
       // Add a 'Create New Profile' option as the first element
       newProfileElements.push(
-        <div className="profileSelection button-17" onClick={() => {
-          setShowProfileSelector(false);
-          setShowProfileCreator(true);
-        }}>-Create New Profile-</div>
+        <div className="newProfileSelectionContainer">
+          <div className="newProfileSelector button-17" onClick={() => {
+            setShowProfileSelector(false);
+            setShowProfileCreator(true);
+          }}>- Create New Profile -</div>
+        </div>
       )
 
       // For each profile, add a new ProfileSelection component
@@ -30,6 +32,7 @@ function ProfileSelector({ setCurrentProfileId, setShowProfileSelector, setShowP
           <ProfileSelection
             setCurrentProfileId={setCurrentProfileId}
             setShowProfileSelector={setShowProfileSelector}
+            setprofileElementsGenerated={setprofileElementsGenerated}
             profileName={profile.profileName}
             profileId={profile._id}
           />)

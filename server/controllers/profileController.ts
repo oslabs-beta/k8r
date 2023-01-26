@@ -44,7 +44,17 @@ const profileController = {
     } catch (err) {
       return createErrorObject(err);
     }
-  }
+  },
+  deleteProfile: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const profileId = req.params.profileId;
+      const deletedProfile = await Profile.findOneAndDelete({ _id: profileId })
+      res.locals.deletedProfile = deletedProfile;
+      return next();
+    } catch (err) {
+      return createErrorObject(err);
+    }
+  },
 }
 
 export default profileController;

@@ -1,4 +1,21 @@
+.dashboardContainer {
+  display: flex;
+  box-sizing: border-box;
+  padding: 30px;
+  gap: 30px;
+  min-height: 100%;
+}
+
 .profileContainer {
+  display: grid;
+  box-sizing: border-box;
+  padding: 30px;
+  gap: 30px;
+  min-height: 100%;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.smallProfileContainer {
   display: flex;
   box-sizing: border-box;
   padding: 30px;

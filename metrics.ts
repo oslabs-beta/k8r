@@ -310,7 +310,7 @@ const allMetrics = {
     description: ''
   },
   writeAvailability: {
-    fullName: 'Availability',
+    fullName: 'Write Availability',
     dashboard: 'apiServer',
     panel: 9,
     description: ''

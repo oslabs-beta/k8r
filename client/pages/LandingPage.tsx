@@ -1,5 +1,4 @@
 import '../stylesheets/landingPage.css'
-import '../stylesheets/buttons.css'
 import logo from '../assets/logo.png'
 import googleSignIn from '../assets/googleSignIn.png'
 

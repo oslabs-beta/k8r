@@ -2,7 +2,7 @@
 
 function Tile({ grafanaPanelUrl }) {
   return (
-    <iframe src={grafanaPanelUrl} className="tile" />
+    <iframe src={grafanaPanelUrl} />
   );
 }
 

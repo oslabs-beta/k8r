@@ -11,7 +11,6 @@ const dashboardController = {
 
   addUserDashboard: async (userId: string, nodeExporterUId?: string, prometheusUId?: string, kubeletUId?: string, apiServerUId?: string) => {
     try {
-      console.log('Inside of addUserDashboard!!!');
       const userInfo = await UserDashboards.create({
         userId: userId,
         nodeExporterUId: nodeExporterUId,

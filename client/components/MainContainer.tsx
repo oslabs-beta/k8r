@@ -14,7 +14,7 @@ function MainContainer({ dashboardUIds, currentProfileId }) {
       <ProfileView key={uuidv4()} dashboardUIds={dashboardUIds} profileId={currentProfileId} />
     )
     setProfileViewArr(newProfileViewArr!);
-  }, [currentProfileId])
+  }, [currentProfileId, dashboardUIds])
 
   return (
     <div className='mainContainer'>

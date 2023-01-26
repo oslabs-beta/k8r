@@ -13,12 +13,15 @@ router.post('/createProfile', profileController.createProfile, (req: Request, re
 })
 
 router.get('/getAllProfiles', profileController.getAllProfiles, (req: Request, res: Response) => {
-  console.log('in get all profiles ', res.locals.allProfiles)
   res.status(200).json(res.locals.allProfiles);
 })
 
 router.get('/getProfileDetails/:profileId', profileController.getProfileDetails, (req: Request, res: Response) => {
   res.status(200).json(res.locals.profileDetails);
+})
+
+router.delete('/deleteProfile/:profileId', profileController.deleteProfile, (req: Request, res: Response) => {
+  res.status(200).json(res.locals.deletedProfile);
 })
 
 export default router;

@@ -43,14 +43,14 @@
 # Setup
   <ol>
     <li>
-      <a href="https://github.com/oslabs-beta/k8r/blob/master/documentation/setup.md#initialize-minikube-cluster---mac-os">Initialize Minikube Cluster</a>
+      <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#initialize-minikube-cluster---mac-os">Initialize Minikube Cluster</a>
       <ul>
-        <li><a href="https://github.com/oslabs-beta/k8r/blob/master/documentation/setup.md#initialize-minikube-cluster---mac-os">Mac OS</a></li>
-        <li><a href="https://github.com/oslabs-beta/k8r/blob/master/documentation/setup.md#initialize-minikube-cluster---windows">Windows</a></li>
+        <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#initialize-minikube-cluster---mac-os">Mac OS</a></li>
+        <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#initialize-minikube-cluster---windows">Windows</a></li>
       </ul>
     </li>
-    <li><a href="https://github.com/oslabs-beta/k8r/blob/master/documentation/setup.md#edit-grafana-config-map">Edit Grafana Config Map</a></li>
-    <li><a href="https://github.com/oslabs-beta/k8r/blob/master/documentation/setup.md#expose-port-and-access-grafana">Expose Port and Access Grafana</a></li>
+    <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#edit-grafana-config-map">Edit Grafana Config Map</a></li>
+    <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#expose-port-and-access-grafana">Expose Port and Access Grafana</a></li>
   </ol>
 
 # Tech Stack

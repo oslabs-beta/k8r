@@ -18,7 +18,7 @@ function NavBar({ setCurrentProfileId }) {
       {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileCreator={setShowProfileCreator} setShowProfileSelector={setShowProfileSelector} /> : null}
       <div className="navBar">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
-        <Link to="/" className="navBarButton navBarHomeButton">
+        <Link to="/" className="navBarButton navBarHomeButton" onClick={() => setCurrentProfileId('')}>
           <AiFillHome />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">

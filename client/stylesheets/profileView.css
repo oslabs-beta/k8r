@@ -1,4 +1,21 @@
+.dashboardContainer {
+  display: flex;
+  box-sizing: border-box;
+  padding: 30px;
+  gap: 30px;
+  min-height: 100%;
+}
+
 .profileContainer {
+  display: grid;
+  box-sizing: border-box;
+  padding: 30px;
+  gap: 30px;
+  min-height: 100%;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.smallProfileContainer {
   display: flex;
   box-sizing: border-box;
   padding: 30px;
@@ -7,6 +24,15 @@
 }
 
 .tile {
+  flex: 1;
+  justify-self: center;
+  align-self: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 400px;
+}
+
+.dashboard {
   flex: 1;
   border: 1px solid black;
   border-radius: 10px;

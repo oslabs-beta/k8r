@@ -6,6 +6,7 @@ import '../stylesheets/profileView.css';
 
 function ProfileView({ profileId, dashboardUIds }) {
   const [tiles, setTiles] = useState<ReactElement[]>([])
+  const [dashboards, setDashboards] = useState<ReactElement[]>([])
 
   useEffect(() => {
     // Function to fetch metrics for the particular profile from backend and generate Tile components
@@ -27,10 +28,10 @@ function ProfileView({ profileId, dashboardUIds }) {
       }
       // If no profileId is supplied, display default dashboard
       else {
-        const dashboardEl = <iframe className="tile" src={`http://localhost:3000/d/${dashboardUIds.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
-        const newTilesArr: ReactElement[] = [];
-        newTilesArr.push(dashboardEl);
-        setTiles(newTilesArr);
+        const dashboardEl = <iframe className="dashboard" src={`http://localhost:3000/d/${dashboardUIds.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+        const newDashboards: ReactElement[] = [];
+        newDashboards.push(dashboardEl);
+        setDashboards(newDashboards);
       }
 
     }
@@ -38,9 +39,17 @@ function ProfileView({ profileId, dashboardUIds }) {
   }, [dashboardUIds]);
 
   return (
-    <div className='profileContainer'>
-      {tiles}
-    </div>
+    <>
+    {profileId ? 
+      <div className='profileContainer'>
+        {tiles}
+      </div>
+    :
+      <div className="dashboardContainer">
+      {dashboards}
+      </div>
+    }
+    </>
   );
 }
 

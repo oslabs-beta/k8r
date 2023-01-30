@@ -3,12 +3,11 @@
  */
 
 import React from 'react';
-import { render, screen, RenderOptions } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 
 import LandingPage from '../../client/pages/LandingPage';
 
-describe('Unit testing React components', () => {
+describe('Test Landing Page Component', () => {
 
   describe('LandingPage', () => {
     let landingPage;
@@ -17,7 +16,7 @@ describe('Unit testing React components', () => {
       landingPage = render(<LandingPage />);
     });
 
-    test('Renders the passed-in text with the label in bold', () => {
+    test('Renders the connect button.', () => {
       expect(landingPage.getByText('Connect')).toHaveTextContent('Connect');
     });
   });

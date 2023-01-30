@@ -56,3 +56,5 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });
+
+export default app;

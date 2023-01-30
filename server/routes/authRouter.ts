@@ -7,8 +7,10 @@ router.get('/user', (req, res) => {
   // req.user is the parsed jwt containing user information
   let userId = null;
   if (req.user) {
+    console.log('req user in auth router ', req.user)
     userId = req.user[0]._id
   }
+  console.log('user id in auth rout ', userId)
   userId ? res.cookie('id', userId) : null;
   res.status(200).json(req.user ? req.user[0] : null);
 });

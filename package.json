@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "test": "jest",
     "dev": "vite & nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -33,6 +34,7 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
     "@types/express-session": "^1.17.5",
+    "@types/jest": "^29.4.0",
     "@types/node": "^18.11.18",
     "@types/passport": "^1.0.11",
     "@types/passport-google-oauth2": "^0.1.5",
@@ -47,7 +49,10 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.4.1",
     "nodemon": "^2.0.20",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.5",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
   }

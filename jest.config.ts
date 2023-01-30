@@ -2,7 +2,6 @@
 export default {
   clearMocks: true,
   coverageProvider: "v8",
-  collectCoverage: true,
   collectCoverageFrom: ['./client/**', './server/**'],
   coverageThreshold: {
     global: {
@@ -19,4 +18,6 @@ export default {
       '<rootDir>/__tests__/mocks/fileMock.js',
     '\\.(css|less)$': '<rootDir>/__tests__/mocks/fileMock.js',
   },
+  silent: true,
+  verbose: true,
 };

@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "test": "jest",
+    "testFull": "jest --collectCoverage=true",
     "dev": "vite & nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "dev:client": "'vite'",
-    "dev:server": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server/server.ts"
+    "preview": "vite preview"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

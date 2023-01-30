@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675102772583" clover="3.2.0">
-  <project timestamp="1675102772583" name="All files">
-    <metrics statements="975" coveredstatements="346" conditionals="22" coveredconditionals="5" methods="30" coveredmethods="3" elements="1027" coveredelements="354" complexity="0" loc="975" ncloc="975" packages="9" files="27" classes="27"/>
+<coverage generated="1675110716133" clover="3.2.0">
+  <project timestamp="1675110716133" name="All files">
+    <metrics statements="968" coveredstatements="339" conditionals="22" coveredconditionals="5" methods="30" coveredmethods="3" elements="1020" coveredelements="347" complexity="0" loc="968" ncloc="968" packages="9" files="27" classes="27"/>
     <package name="client">
       <metrics statements="88" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
       <file name="App.tsx" path="/Users/joshhoward/Documents/repos/codesmith/projects/k8r/client/App.tsx">
@@ -885,13 +885,13 @@
       </file>
     </package>
     <package name="server.db">
-      <metrics statements="27" coveredstatements="23" conditionals="3" coveredconditionals="1" methods="2" coveredmethods="1"/>
+      <metrics statements="20" coveredstatements="16" conditionals="3" coveredconditionals="1" methods="2" coveredmethods="1"/>
       <file name="db.json" path="/Users/joshhoward/Documents/repos/codesmith/projects/k8r/server/db/db.json">
         <metrics statements="1" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
       </file>
       <file name="db.ts" path="/Users/joshhoward/Documents/repos/codesmith/projects/k8r/server/db/db.ts">
-        <metrics statements="26" coveredstatements="23" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="19" coveredstatements="16" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -904,20 +904,13 @@
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="13" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
       </file>
     </package>
     <package name="server.models">

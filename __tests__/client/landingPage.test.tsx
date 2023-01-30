@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
 import LandingPage from '../../client/pages/LandingPage';
 
@@ -17,7 +18,7 @@ describe('Test Landing Page Component', () => {
     });
 
     test('Renders the connect button.', () => {
-      expect(landingPage.getByText('Connect')).toHaveTextContent('Connect');
+      expect(landingPage.getByRole('button', { name: 'Connect' })).toBeVisible();
     });
   });
 

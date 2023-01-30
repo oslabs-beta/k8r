@@ -1,4 +1,4 @@
-import app from '../server/server';
+import app from '../../server/server';
 import request from 'supertest';
 import dotenv from 'dotenv'
 
@@ -12,5 +12,7 @@ describe("GET /getDashboardUIds", () => {
     expect(res.statusCode).toEqual(200);
   });
 })
+
+
 
 

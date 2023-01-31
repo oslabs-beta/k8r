@@ -101,6 +101,8 @@
           allow_embedding: true
           [auth.anonymous]
           enabled: true
+          [dataproxy]
+          timeout: 600
 
 3. Restart Minikube
 

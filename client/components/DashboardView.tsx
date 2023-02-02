@@ -7,13 +7,16 @@ function DashboardView({ clusters }) {
 
   useEffect(() => {
     const newDashboards: ReactElement[] = [];
-    clusters.forEach((cluster) => {
-      newDashboards.push(
-        // Add extendable/collapsible header here
-        <iframe key={uuidv4()} className="dashboard" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
-      )
-    })
-    setDashboards(newDashboards);
+    if (!clusters) return;
+    if (clusters.length) {
+      clusters.forEach((cluster) => {
+        newDashboards.push(
+          // Add extendable/collapsible header here
+          <iframe key={uuidv4()} className="dashboard" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+        )
+      })
+      setDashboards(newDashboards);
+    }
   });
 
   return (

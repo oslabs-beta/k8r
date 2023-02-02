@@ -14,7 +14,7 @@ function App() {
     const getUserData = async () => {
       const response = await fetch('/auth/user')
       const parsedResponse = await response.json();
-      console.log('parsed response ', parsedResponse)
+      // console.log('parsed response ', parsedResponse)
       if (parsedResponse) {
         setUsername(parsedResponse.email.replace('@gmail.com', ''));
         setPhoto(parsedResponse.profilePhoto)

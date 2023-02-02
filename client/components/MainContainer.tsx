@@ -7,15 +7,20 @@ import { v4 as uuidv4 } from 'uuid';
 function MainContainer({ clusters, currentProfileId }) {
   return (
     <div className='mainContainer'>
-      <img
-        src={logoSquareTransparent}
-        className='logoWatermark'
-        alt='K8R Logo'
-      />
-      {currentProfileId ?
-        <ProfileView key={uuidv4()} clusters={clusters} profileId={currentProfileId} />
+      <img src={logoSquareTransparent} className='logoWatermark' alt='K8R Logo' />
+      {(!clusters) || (!clusters.length) ?
+        <div className="noClustersNotice">
+          <span>You currently have no clusters.</span>
+          <div className="addClusterButton button-17">Add Cluster</div>
+        </div>
         :
-        <DashboardView key={uuidv4()} clusters={clusters} />
+        <>
+          {currentProfileId ?
+            <ProfileView key={uuidv4()} clusters={clusters} profileId={currentProfileId} />
+            :
+            <DashboardView key={uuidv4()} clusters={clusters} />
+          }
+        </>
       }
     </div>
   );

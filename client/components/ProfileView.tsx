@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { linkGenerator } from '../../metrics';
 import Tile from './Tile';
 import '../stylesheets/profileView.css';
+import ClusterTileContainer from './ClusterTileContainer';
 
 function ProfileView({ profileId, clusters }) {
   const [tiles, setTiles] = useState<ReactElement[]>([])
@@ -13,10 +14,11 @@ function ProfileView({ profileId, clusters }) {
     async function generateTiles() {
       const response = await fetch(`/api/profile/getDetails/${profileId}`)
       const profileDetails = await response.json();
-      const newTiles: ReactElement[] = [];
-      profileDetails.metricsArray.forEach((metric) => {
-        const grafanaPanelUrl = linkGenerator(clusters, metric);
-        newTiles.push(<Tile key={uuidv4()} grafanaPanelUrl={grafanaPanelUrl} />);
+      const newClusterContainers: ReactElement[] = [];
+      clusters.forEach((cluster) => {
+        newClusterContainers.push(
+          <ClusterTileContainer key={uuidv4()} cluster={cluster} profileDetails={profileDetails} />
+        )
       })
       setTiles(newTiles);
     }

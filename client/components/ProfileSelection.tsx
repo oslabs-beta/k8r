@@ -10,7 +10,7 @@ function ProfileSelection({ setCurrentProfileId, setShowProfileSelector, setprof
   }
 
   async function deleteProfile() {
-    await fetch(`/api/deleteProfile/${profileId}`, {
+    await fetch(`/api/profile/delete/${profileId}`, {
       method: 'DELETE'
     })
     setprofileElementsGenerated(false);

@@ -11,7 +11,7 @@ function ProfileView({ profileId, dashboardUIds }) {
   useEffect(() => {
     // Function to fetch metrics for the particular profile from backend and generate Tile components
     async function generateTiles() {
-      const response = await fetch(`/api/getProfileDetails/${profileId}`)
+      const response = await fetch(`/api/profile/getDetails/${profileId}`)
       const profileDetails = await response.json();
       const newTiles: ReactElement[] = [];
       profileDetails.metricsArray.forEach((metric) => {
@@ -40,15 +40,15 @@ function ProfileView({ profileId, dashboardUIds }) {
 
   return (
     <>
-    {profileId ? 
-      <div className='profileContainer'>
-        {tiles}
-      </div>
-    :
-      <div className="dashboardContainer">
-      {dashboards}
-      </div>
-    }
+      {profileId ?
+        <div className='profileContainer'>
+          {tiles}
+        </div>
+        :
+        <div className="dashboardContainer">
+          {dashboards}
+        </div>
+      }
     </>
   );
 }

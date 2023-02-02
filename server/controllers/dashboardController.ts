@@ -1,4 +1,3 @@
-import UserDashboards from "../models/userDashboards";
 import { DBUIds } from '../../types';
 
 const createErrorObject = (err) => {

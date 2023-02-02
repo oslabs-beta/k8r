@@ -1,27 +1,10 @@
-import express, { Express, Request, Response, ErrorRequestHandler, NextFunction } from 'express';
-import grafanaController from '../controllers/grafanaController';
-import profileController from '../controllers/profileController';
+import express from 'express';
+import clusterRouter from './clusterRouter'
+import profileRouter from './profileRouter'
 
 const router = express.Router();
 
-router.get('/getDashboardUIds', grafanaController.getDashboards, (req: Request, res: Response) => {
-  res.status(200).json(res.locals.userDbUIds);
-})
-
-router.post('/createProfile', profileController.createProfile, (req: Request, res: Response) => {
-  res.status(200).json(res.locals.profileInfo);
-})
-
-router.get('/getAllProfiles', profileController.getAllProfiles, (req: Request, res: Response) => {
-  res.status(200).json(res.locals.allProfiles);
-})
-
-router.get('/getProfileDetails/:profileId', profileController.getProfileDetails, (req: Request, res: Response) => {
-  res.status(200).json(res.locals.profileDetails);
-})
-
-router.delete('/deleteProfile/:profileId', profileController.deleteProfile, (req: Request, res: Response) => {
-  res.status(200).json(res.locals.deletedProfile);
-})
+router.use('/cluster', clusterRouter);
+router.use('/profile', profileRouter);
 
 export default router;

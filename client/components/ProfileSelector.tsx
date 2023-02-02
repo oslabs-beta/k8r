@@ -10,7 +10,7 @@ function ProfileSelector({ setCurrentProfileId, setShowProfileSelector, setShowP
   useEffect(() => {
     async function getProfiles() {
       // Retrieve all profiles from back end db
-      const response = await fetch('/api/getAllProfiles');
+      const response = await fetch('/api/profile/getAll');
       const profiles = await response.json();
 
       // Create array to render all profile options

@@ -1,21 +1,10 @@
 import '../stylesheets/mainContainer.css';
 import logoSquareTransparent from '../assets/logoSquareTransparent.png';
 import ProfileView from './ProfileView';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import DashboardView from './DashboardView';
 import { v4 as uuidv4 } from 'uuid';
 
 function MainContainer({ clusters, currentProfileId }) {
-  const [profileViewArr, setProfileViewArr] = useState<React.ReactElement[]>([])
-
-  useEffect(() => {
-    const newProfileViewArr: React.ReactElement[] = [];
-    newProfileViewArr.push(
-      <ProfileView key={uuidv4()} clusters={clusters} profileId={currentProfileId} />
-    )
-    setProfileViewArr(newProfileViewArr!);
-  }, [currentProfileId, clusters])
-
   return (
     <div className='mainContainer'>
       <img
@@ -23,9 +12,11 @@ function MainContainer({ clusters, currentProfileId }) {
         className='logoWatermark'
         alt='K8R Logo'
       />
-      <div className='profileCard'>
-        {profileViewArr}
-      </div>
+      {currentProfileId ?
+        <ProfileView key={uuidv4()} clusters={clusters} profileId={currentProfileId} />
+        :
+        <DashboardView key={uuidv4()} clusters={clusters} />
+      }
     </div>
   );
 }

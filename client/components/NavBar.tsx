@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../stylesheets/navBar.css'
 import { AiFillHome, AiFillSetting, AiFillDashboard, AiOutlineShareAlt } from 'react-icons/ai';
-import { BsPeopleFill, BsPlusCircle, BsFolder2Open, } from 'react-icons/bs';
+import { BsPeopleFill, BsPlusCircle, BsFolder2Open, BsEmojiSmileUpsideDown } from 'react-icons/bs';
 import K8RLogoSquare from '../assets/logoSquare.png'
 import { useState } from 'react';
 import ProfileCreator from './ProfileCreator';
@@ -9,10 +9,9 @@ import ProfileSelector from './ProfileSelector'
 import ClusterCreator from './ClusterCreator';
 
 
-function NavBar({ setCurrentProfileId, setClustersFetched }) {
+function NavBar({ setCurrentProfileId, setClustersFetched, showClusterCreator, setShowClusterCreator }) {
   const [showProfileCreator, setShowProfileCreator] = useState(false);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
-  const [showClusterCreator, setShowClusterCreator] = useState(false);
 
   return (
     <>
@@ -23,6 +22,9 @@ function NavBar({ setCurrentProfileId, setClustersFetched }) {
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton navBarHomeButton" onClick={() => setCurrentProfileId('')}>
           <AiFillHome />
+        </Link>
+        <Link to="/" className="navBarButton navBarSettingsButton">
+          <BsEmojiSmileUpsideDown onClick={() => { setShowClusterCreator(true) }} />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">
           <BsPlusCircle onClick={() => { setShowProfileCreator(true) }} />

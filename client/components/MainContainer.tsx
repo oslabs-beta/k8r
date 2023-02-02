@@ -4,14 +4,14 @@ import ProfileView from './ProfileView';
 import DashboardView from './DashboardView';
 import { v4 as uuidv4 } from 'uuid';
 
-function MainContainer({ clusters, currentProfileId }) {
+function MainContainer({ clusters, currentProfileId, setShowClusterCreator }) {
   return (
     <div className='mainContainer'>
       <img src={logoSquareTransparent} className='logoWatermark' alt='K8R Logo' />
       {(!clusters) || (!clusters.length) ?
         <div className="noClustersNotice">
           <span>You currently have no clusters.</span>
-          <div className="addClusterButton button-17">Add Cluster</div>
+          <div className="addClusterButton button-17" onClick={() => { setShowClusterCreator(true) }}>Add Cluster</div>
         </div>
         :
         <>

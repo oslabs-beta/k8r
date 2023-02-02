@@ -1,21 +1,24 @@
 import { Link } from 'react-router-dom'
 import '../stylesheets/navBar.css'
 import { AiFillHome, AiFillSetting, AiFillDashboard, AiOutlineShareAlt } from 'react-icons/ai';
-import { BsPeopleFill, BsSearch, BsPlusCircle, BsFolderPlus, BsFolder2Open, } from 'react-icons/bs';
+import { BsPeopleFill, BsPlusCircle, BsFolder2Open, } from 'react-icons/bs';
 import K8RLogoSquare from '../assets/logoSquare.png'
 import { useState } from 'react';
 import ProfileCreator from './ProfileCreator';
 import ProfileSelector from './ProfileSelector'
+import ClusterCreator from './ClusterCreator';
 
 
-function NavBar({ setCurrentProfileId }) {
+function NavBar({ setCurrentProfileId, setClustersFetched }) {
   const [showProfileCreator, setShowProfileCreator] = useState(false);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
+  const [showClusterCreator, setShowClusterCreator] = useState(false);
 
   return (
     <>
       {showProfileCreator ? <ProfileCreator setShowProfileCreator={setShowProfileCreator} setCurrentProfileId={setCurrentProfileId} /> : null}
       {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileCreator={setShowProfileCreator} setShowProfileSelector={setShowProfileSelector} /> : null}
+      {showClusterCreator ? <ClusterCreator setClustersFetched={setClustersFetched} setShowClusterCreator={setShowClusterCreator} /> : null}
       <div className="navBar">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton navBarHomeButton" onClick={() => setCurrentProfileId('')}>

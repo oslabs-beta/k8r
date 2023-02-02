@@ -4,7 +4,7 @@ import { linkGenerator } from '../../metrics';
 import Tile from './Tile';
 import '../stylesheets/profileView.css';
 
-function ProfileView({ profileId, dashboardUIds }) {
+function ProfileView({ profileId, clusters }) {
   const [tiles, setTiles] = useState<ReactElement[]>([])
   const [dashboards, setDashboards] = useState<ReactElement[]>([])
 
@@ -15,20 +15,20 @@ function ProfileView({ profileId, dashboardUIds }) {
       const profileDetails = await response.json();
       const newTiles: ReactElement[] = [];
       profileDetails.metricsArray.forEach((metric) => {
-        const grafanaPanelUrl = linkGenerator(dashboardUIds, metric);
+        const grafanaPanelUrl = linkGenerator(clusters, metric);
         newTiles.push(<Tile key={uuidv4()} grafanaPanelUrl={grafanaPanelUrl} />);
       })
       setTiles(newTiles);
     }
     // If dashboardUids fetch has completed
-    if (dashboardUIds) {
+    if (clusters) {
       // If a profileId is supplied, generate tile
       if (profileId.length) {
         generateTiles();
       }
       // If no profileId is supplied, display default dashboard
       else {
-        const dashboardEl = <iframe className="dashboard" src={`http://localhost:3000/d/${dashboardUIds.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+        const dashboardEl = <iframe className="dashboard" src={`http://localhost:3000/d/${clusters.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
         const newDashboards: ReactElement[] = [];
         newDashboards.push(dashboardEl);
         setDashboards(newDashboards);
@@ -36,7 +36,7 @@ function ProfileView({ profileId, dashboardUIds }) {
 
     }
 
-  }, [dashboardUIds]);
+  }, [clusters]);
 
   return (
     <>

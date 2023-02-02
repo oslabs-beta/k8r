@@ -5,16 +5,16 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-function MainContainer({ dashboardUIds, currentProfileId }) {
+function MainContainer({ clusters, currentProfileId }) {
   const [profileViewArr, setProfileViewArr] = useState<React.ReactElement[]>([])
 
   useEffect(() => {
     const newProfileViewArr: React.ReactElement[] = [];
     newProfileViewArr.push(
-      <ProfileView key={uuidv4()} dashboardUIds={dashboardUIds} profileId={currentProfileId} />
+      <ProfileView key={uuidv4()} clusters={clusters} profileId={currentProfileId} />
     )
     setProfileViewArr(newProfileViewArr!);
-  }, [currentProfileId, dashboardUIds])
+  }, [currentProfileId, clusters])
 
   return (
     <div className='mainContainer'>

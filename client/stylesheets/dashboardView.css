@@ -1,0 +1,15 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  gap: 30px;
+  min-height: 100%;
+}
+
+.dashboard {
+  flex: 1;
+  border: 1px solid black;
+  border-radius: 10px;
+}

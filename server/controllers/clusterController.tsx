@@ -14,8 +14,8 @@ const clusterController = {
       const userId = req.cookies.id;
       const { name, url } = req.body;
 
-      const dashboards = dashboardController.getDashboards(url)
-
+      const dashboards = await dashboardController.getDashboards(url);
+      console.log('Dashboards returned inside clusterController: ', dashboards);
       const clusterInfo = await Cluster.create({
         userId: userId,
         clusterName: name,

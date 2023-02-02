@@ -4,7 +4,8 @@ import '../stylesheets/profileView.css';
 import ClusterTileContainer from './ClusterTileContainer';
 
 function ProfileView({ profileId, clusters }) {
-  const [clusterTileContainers, setClusterTileContainers] = useState<ReactElement[]>([])
+  const [clusterTileContainers, setClusterTileContainers] = useState<ReactElement[]>([]);
+  const [profileDetailsFetched, setProfileDetailsFetched] = useState(false);
 
   useEffect(() => {
     // Function to fetch metrics for the particular profile from backend and generate Tile components
@@ -20,7 +21,8 @@ function ProfileView({ profileId, clusters }) {
       setClusterTileContainers(newClusterContainers);
     }
     generateClusterTileContainers();
-  }, [clusterTileContainers]);
+    setProfileDetailsFetched(true);
+  }, [profileDetailsFetched]);
 
   return (
     <>

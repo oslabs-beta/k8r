@@ -14,7 +14,10 @@ const clusterSchema = new Schema({
     type: String,
   },
   dashboards: {
-    type: Object,
+    nodeExporterUId: { type: String },
+    prometheusUId: { type: String },
+    kubeletUId: { type: String },
+    apiServerUId: { type: String },
   }
 });
 

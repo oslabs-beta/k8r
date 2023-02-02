@@ -21,29 +21,33 @@ const dashboardController = {
       apiServerUId: 'Kubernetes%20/%20API%20Server',
     };
 
-    const dbUIds: DBUIds = {};
-    for (let key in dashboardSearchStrings) {
-      // Get dashboard UId from grafana API
-      try {
-        const response = await fetch(
-          `${grafanaUrl}/api/search?query=${dashboardSearchStrings[key]}`,
-          {
-            method: 'GET',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              Authorization: `Basic ${encodedCredentials}`,
-            },
-          }
-        )
-        const parsedResponse = await response.json();
-        // For each dashboard, add to dbUids key=dashboard and value=dashboardUid
-        dbUIds[key] = parsedResponse[0].uid;
+    async function fetchFromGrafana() {
+      const dbUIds: DBUIds = {};
+      for (let key in dashboardSearchStrings) {
+        // Get dashboard UId from grafana API
+        try {
+          const response = await fetch(
+            `${grafanaUrl}/api/search?query=${dashboardSearchStrings[key]}`,
+            {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Basic ${encodedCredentials}`,
+              },
+            }
+          )
+          const parsedResponse = await response.json();
+          // For each dashboard, add to dbUids key=dashboard and value=dashboardUid
+          dbUIds[key] = parsedResponse[0].uid;
+        }
+        catch (err) {
+          return createErrorObject(err);
+        };
       }
-      catch (err) {
-        return createErrorObject(err);
-      };
+      return dbUIds;
     }
+    const dbUIds = await fetchFromGrafana();
     return dbUIds;
   }
 };

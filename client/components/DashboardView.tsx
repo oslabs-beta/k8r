@@ -4,6 +4,7 @@ import '../stylesheets/dashboardView.css';
 
 function DashboardView({ clusters }) {
   const [dashboards, setDashboards] = useState<ReactElement[]>([])
+  const [dashboardsFetched, setDashboardsFetched] = useState(false)
 
   useEffect(() => {
     const newDashboards: ReactElement[] = [];
@@ -16,8 +17,9 @@ function DashboardView({ clusters }) {
         )
       })
       setDashboards(newDashboards);
+      setDashboardsFetched(true)
     }
-  });
+  }, [dashboardsFetched]);
 
   return (
     <>

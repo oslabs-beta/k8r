@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import '../stylesheets/navBar.css'
-import { AiFillHome, AiFillSetting, AiFillDashboard, AiOutlineShareAlt } from 'react-icons/ai';
+import '../stylesheets/navbar.css'
+import { AiFillHome, AiFillSetting, AiFillDashboard, AiOutlineShareAlt, AiOutlineCluster } from 'react-icons/ai';
 import { BsPeopleFill, BsPlusCircle, BsFolder2Open, BsEmojiSmileUpsideDown } from 'react-icons/bs';
 import K8RLogoSquare from '../assets/logoSquare.png'
 import { useState } from 'react';
@@ -24,7 +24,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showClusterCreator, s
           <AiFillHome />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">
-          <BsEmojiSmileUpsideDown onClick={() => { setShowClusterCreator(true) }} />
+          <AiOutlineCluster onClick={() => { setShowClusterCreator(true) }} />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">
           <BsPlusCircle onClick={() => { setShowProfileCreator(true) }} />

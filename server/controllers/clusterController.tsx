@@ -15,7 +15,6 @@ const clusterController = {
       const { name, url } = req.body;
 
       const dashboards = await dashboardController.getDashboards(url);
-      console.log('Dashboards returned inside clusterController: ', dashboards);
       const clusterInfo = await Cluster.create({
         userId: userId,
         clusterName: name,

@@ -12,13 +12,15 @@ function Home({ username, photo }) {
 
   useEffect(() => {
     // Get clusters and store them in state for link population.
-    async function getClusters() {
-      const response = await fetch('/api/cluster/getAll/')
-      const newClusters = await response.json();
-      setClusters(newClusters)
-      setClustersFetched(true)
+    if (!clustersFetched) {
+      async function getClusters() {
+        const response = await fetch('/api/cluster/getAll/')
+        const newClusters = await response.json();
+        setClusters(newClusters)
+        setClustersFetched(true)
+      }
+      getClusters()
     }
-    getClusters()
   }, [clustersFetched])
 
   return (

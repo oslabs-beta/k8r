@@ -1,8 +1,5 @@
 .mainContainer {
   grid-area: mainContainer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .logoWatermark {

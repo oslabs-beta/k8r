@@ -13,7 +13,10 @@ function DashboardView({ clusters }) {
       clusters.forEach((cluster) => {
         newDashboards.push(
           // Add extendable/collapsible header here
-          <iframe key={uuidv4()} className="dashboard" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+          <div className="dashboard">
+            <div className="dashboardTitle">{cluster.clusterName}</div>
+            <iframe key={uuidv4()} className="grafanaDashboard" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+          </div>
         )
       })
       setDashboards(newDashboards);
@@ -23,7 +26,7 @@ function DashboardView({ clusters }) {
 
   return (
     <>
-      <div className="dashboardContainer">
+      <div className="dashboardsContainer">
         {dashboards}
       </div>
     </>

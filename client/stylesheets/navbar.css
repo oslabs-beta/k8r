@@ -1,8 +1,11 @@
 .navBar {
   grid-area: navBar;
+  position: sticky;
+  top: 0;
+  left: 0;
   box-sizing: border-box;
   background-color: var(--K8RDarkBlue);
-  min-height: 100vh;
+  height: 100vh;
   padding: 15px 40px;
   display: flex;
   flex-direction: column;

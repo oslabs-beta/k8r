@@ -1,3 +1,4 @@
+import e from 'express';
 import { ReactElement, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/dashboardView.css';
@@ -5,6 +6,12 @@ import '../stylesheets/dashboardView.css';
 function DashboardView({ clusters }) {
   const [dashboards, setDashboards] = useState<ReactElement[]>([])
   const [dashboardsFetched, setDashboardsFetched] = useState(false)
+
+  function toggleDashboardExtend(e) {
+    const dashboard = e.currentTarget.nextSibling;
+    dashboard.classList.toggle('collapsed');
+    dashboard.classList.toggle('extended');
+  }
 
   useEffect(() => {
     const newDashboards: ReactElement[] = [];
@@ -14,8 +21,8 @@ function DashboardView({ clusters }) {
         newDashboards.push(
           // Add extendable/collapsible header here
           <div className="dashboard">
-            <div className="dashboardTitle">{cluster.clusterName}</div>
-            <iframe key={uuidv4()} className="grafanaDashboard" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+            <div className="dashboardTitle" onClick={toggleDashboardExtend}>{cluster.clusterName}</div>
+            <iframe key={uuidv4()} className="grafanaDashboard extended" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
           </div>
         )
       })

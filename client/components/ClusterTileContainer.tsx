@@ -23,7 +23,7 @@ function ClusterTileContainer({ cluster, profileDetails }) {
   }, [])
   return (
     <div className="clusterTileContainer">
-      <div className="profileTitle" onClick={toggleDashboardExtend}>{cluster.clusterName}</div>
+      <div className="profileTitle" onClick={toggleDashboardExtend}>{`${cluster.clusterName} - ${profileDetails.profileName}`}</div>
       <div className={`profileExtended ${tiles.length > 4 ? 'bigProfile' : 'tileContainer'}`}>
         {tiles}
       </div>

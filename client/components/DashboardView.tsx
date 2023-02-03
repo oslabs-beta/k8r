@@ -10,7 +10,7 @@ function DashboardView({ clusters }) {
   function toggleDashboardExtend(e) {
     const dashboard = e.currentTarget.nextSibling;
     dashboard.classList.toggle('collapsed');
-    dashboard.classList.toggle('extended');
+    dashboard.classList.toggle('dashboardExtended');
   }
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function DashboardView({ clusters }) {
           // Add extendable/collapsible header here
           <div className="dashboard">
             <div className="dashboardTitle" onClick={toggleDashboardExtend}>{cluster.clusterName}</div>
-            <iframe key={uuidv4()} className="grafanaDashboard extended" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
+            <iframe key={uuidv4()} className="grafanaDashboard dashboardExtended" src={`${cluster.url}/d/${cluster.dashboards.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
           </div>
         )
       })

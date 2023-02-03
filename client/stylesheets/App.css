@@ -13,7 +13,5 @@
 
 #root {
   background-color: rgba(0, 180, 216, 0.1);
-  min-width: 100vh;
-  min-height: 100vh;
   font-family: var(--K8RFont);
 }

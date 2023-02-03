@@ -60,6 +60,14 @@
   gap: 2em;
 }
 
+.metricCategory {
+  margin: 8px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-style: italic;
+  border-bottom: 1px solid;
+}
+
 .buttonsContainer a {
   text-decoration: none;
   color: black;

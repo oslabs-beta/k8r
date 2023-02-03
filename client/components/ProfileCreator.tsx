@@ -1,15 +1,24 @@
 import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/profileCreator.css'
-import allMetrics from '../../metrics'
+import allMetrics, { dashboards as dashboardDetails } from '../../metrics'
 
 function ProfileCreator({ setShowProfileCreator, setCurrentProfileId }) {
 
   const metricsOptionsElements: React.ReactElement[] = [];
+  const dashboardTitles: String[] = [];
 
   // For each metric
   Object.keys(allMetrics).forEach((metric) => {
     // Pull the name of the metric
     const metricName = allMetrics[metric].fullName
+
+    const dashboardName = dashboardDetails[allMetrics[metric].dashboard].fullName
+    if (!dashboardTitles.includes(dashboardName)) {
+      metricsOptionsElements.push(
+        <div className="metricCategory">{dashboardName}</div>
+      )
+      dashboardTitles.push(dashboardName);
+    }
 
     //Push a checkbox with that name to the metricsOptionsElements array to be rendered
     metricsOptionsElements.push(

@@ -3,7 +3,6 @@
   grid-template-columns: 1fr;
   width: 100%;
   box-sizing: border-box;
-  padding: 30px;
   gap: 30px;
   min-height: 100%;
 }

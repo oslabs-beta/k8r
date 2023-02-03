@@ -25,9 +25,9 @@ function ProfileView({ profileId, clusters }) {
   }, [profileDetailsFetched]);
 
   return (
-    <>
+    <div className="profileContainers">
       {clusterTileContainers}
-    </>
+    </div>
   );
 }
 

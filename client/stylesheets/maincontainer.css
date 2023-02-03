@@ -1,6 +1,6 @@
 .mainContainer {
   grid-area: mainContainer;
-  padding: 20px;
+  padding: 0 100px 0 100px;
 }
 
 .logoWatermark {

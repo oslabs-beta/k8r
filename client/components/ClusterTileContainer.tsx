@@ -9,8 +9,8 @@ function ClusterTileContainer({ cluster, profileDetails }) {
 
   function toggleDashboardExtend(e) {
     const dashboard = e.currentTarget.nextSibling;
-    dashboard.classList.toggle('collapsed');
-    dashboard.classList.toggle('extended');
+    dashboard.classList.toggle('profileCollapsed');
+    dashboard.classList.toggle('profileExtended');
   }
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function ClusterTileContainer({ cluster, profileDetails }) {
   return (
     <div className="clusterTileContainer">
       <div className="profileTitle" onClick={toggleDashboardExtend}>{cluster.clusterName}</div>
-      <div className="tileContainer profileExtended">
+      <div className={`profileExtended ${tiles.length > 4 ? 'bigProfile' : 'tileContainer'}`}>
         {tiles}
       </div>
     </div>

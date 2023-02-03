@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom'
 import '../stylesheets/navbar.css'
 import { AiFillHome, AiFillSetting, AiFillDashboard, AiOutlineShareAlt, AiOutlineCluster } from 'react-icons/ai';
 import { BsPeopleFill, BsPlusCircle, BsFolder2Open, BsEmojiSmileUpsideDown } from 'react-icons/bs';
+import { BiLogOut } from 'react-icons/bi';
 import K8RLogoSquare from '../assets/logoSquare.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProfileCreator from './ProfileCreator';
 import ProfileSelector from './ProfileSelector'
 import ClusterEditor from './ClusterEditor';
@@ -12,6 +13,39 @@ import ClusterEditor from './ClusterEditor';
 function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, setShowclusterEditor, clusters }) {
   const [showProfileCreator, setShowProfileCreator] = useState(false);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
+  const [hoverEffectsAdded, setHoverEffectsAdded] = useState(false);
+
+  useEffect(() => {
+    function extend(e) {
+      console.log('inside extend');
+      const titles = document.querySelectorAll('.navBarButtonTitle')
+      console.log('titles, ', titles);
+      titles.forEach((titleDiv) => {
+        if (!titleDiv.classList.contains('navBarExtended')) {
+          console.log('inside extend if')
+          titleDiv.classList.add('navBarExtended');
+        }
+      })
+    }
+
+    function collapse(e) {
+      console.log('inside collapse!!');
+      const titles = document.querySelectorAll('.navBarButtonTitle')
+      titles.forEach((titleDiv) => {
+        if (titleDiv.classList.contains('navBarExtended')) {
+          titleDiv.classList.remove('navBarExtended');
+        }
+      })
+    }
+
+    const navBarButtons = document.querySelectorAll('.navBarButtonIcon');
+    navBarButtons.forEach((navBarButton) => {
+      navBarButton.addEventListener('mouseover', extend)
+    });
+    document.querySelector('.navBar')?.addEventListener('mouseleave', collapse)
+    setHoverEffectsAdded(true);
+  }, [hoverEffectsAdded])
+
 
   return (
     <>
@@ -20,26 +54,33 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
       {showclusterEditor ? <ClusterEditor setClustersFetched={setClustersFetched} setShowclusterEditor={setShowclusterEditor} clusters={clusters} /> : null}
       <div className="navBar">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
-        <Link to="/" className="navBarButton navBarHomeButton" onClick={() => setCurrentProfileId('')}>
-          <AiFillHome />
+        <Link to="/" className="navBarButton" onClick={() => setCurrentProfileId('')}>
+          <AiFillHome className="navBarButtonIcon" />
+          <div className="navBarButtonTitle navBarCollapsed">Home</div>
         </Link>
-        <Link to="/" className="navBarButton navBarSettingsButton">
-          <AiOutlineCluster onClick={() => { setShowclusterEditor(true) }} />
+        <Link to="/" className="navBarButton">
+          <AiOutlineCluster className="navBarButtonIcon" onClick={() => { setShowclusterEditor(true) }} />
+          <div className="navBarButtonTitle navBarCollapsed">Cluster Editor</div>
         </Link>
-        <Link to="/" className="navBarButton navBarSettingsButton">
-          <BsPlusCircle onClick={() => { setShowProfileCreator(true) }} />
+        <Link to="/" className="navBarButton">
+          <BsPlusCircle className="navBarButtonIcon" onClick={() => { setShowProfileCreator(true) }} />
+          <div className="navBarButtonTitle navBarCollapsed">Add Profile</div>
         </Link>
-        <Link to="/" className="navBarButton navBarSettingsButton">
-          <BsFolder2Open onClick={() => { setShowProfileSelector(true) }} />
+        <Link to="/" className="navBarButton">
+          <BsFolder2Open className="navBarButtonIcon" onClick={() => { setShowProfileSelector(true) }} />
+          <div className="navBarButtonTitle navBarCollapsed">Select Profile</div>
         </Link>
-        <Link to="/" className="navBarButton navBarSettingsButton">
-          <BsPeopleFill onClick={() => { setShowProfileSelector(true) }} />
+        <Link to="/" className="navBarButton">
+          <BsPeopleFill className="navBarButtonIcon" onClick={() => { setShowProfileSelector(true) }} />
+          <div className="navBarButtonTitle navBarCollapsed">Contact</div>
         </Link>
-        <Link to="/" className="navBarButton navBarSettingsButton">
-          <AiOutlineShareAlt />
+        <Link to="/" className="navBarButton">
+          <AiOutlineShareAlt className="navBarButtonIcon" />
+          <div className="navBarButtonTitle navBarCollapsed">Share</div>
         </Link>
-        <Link to="/" className="navBarButton navBarSettingsButton">
-          <AiFillSetting />
+        <Link to="/" className="navBarButton">
+          <BiLogOut className="navBarButtonIcon" />
+          <div className="navBarButtonTitle navBarCollapsed">Log Out</div>
         </Link>
       </div>
     </>

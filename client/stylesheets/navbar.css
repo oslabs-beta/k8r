@@ -22,8 +22,12 @@
 }
 
 .navBarButton {
+  width: 100%;
   color: var(--K8RPeach);
   font-size: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navBarButton:hover {
@@ -31,4 +35,21 @@
   transform: scale(1.15);
   color: var(--K8RLightBlue);
   cursor: pointer;
+}
+
+.navBarCollapsed {
+  transition: all 0.5s;
+  width: 0;
+  display: none;
+}
+
+.navBarExtended {
+  transition: all 0.5s;
+  width: auto;
+  display: block;
+  white-space: nowrap;
+}
+
+.navBarButtonTitle {
+  font-size: 1.5rem
 }

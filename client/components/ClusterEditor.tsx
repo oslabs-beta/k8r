@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { FaTrash } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
-import '../stylesheets/clusterCreator.css'
+import '../stylesheets/clusterEditor.css'
 
-function ClusterCreator({ setClustersFetched, setShowClusterCreator, clusters }) {
+function ClusterEditor({ setClustersFetched, setShowclusterEditor, clusters }) {
   const [clusterElements, setClusterElements] = useState<React.ReactElement[]>([]);
   const [clusterElementsGenerated, setClusterElementsGenerated] = useState(false);
 
@@ -28,7 +28,7 @@ function ClusterCreator({ setClustersFetched, setShowClusterCreator, clusters })
 
     // Reset clustersFetched to false to immediately re-render the main container dashboards
     setClustersFetched(false);
-    setShowClusterCreator(false);
+    setShowclusterEditor(false);
   }
 
   async function deleteCluster(clusterId) {
@@ -40,7 +40,7 @@ function ClusterCreator({ setClustersFetched, setShowClusterCreator, clusters })
     }
     const deletedCluster = await asyncDeleteCluster(clusterId);
     setClustersFetched(false);
-    setShowClusterCreator (false);
+    setShowclusterEditor(false);
   }
 
   useEffect(() => {
@@ -64,17 +64,26 @@ function ClusterCreator({ setClustersFetched, setShowClusterCreator, clusters })
 
   return (
     <div id="modalBackground">
-      <div className="clusterCreatorModal">
-        <h3>Cluster Creator</h3>
-        <input type="text" placeholder="Cluster Name..." className="clusterInput clusterNameInput" />
-        <input type="text" placeholder="Cluster URL..." className="clusterInput clusterUrlInput" />
-        <div className="buttonsContainer">
-          <div className="logoutButton button-17" onClick={createNewCluster}>Submit</div>
-          <div className="cancelButton button-17" onClick={() => { setShowClusterCreator(false) }}>Cancel</div>
+      <div className="clusterEditorModal">
+        <h3>Cluster Editor</h3>
+        <div className="clusterEditor">
+          <div className="addClusterContainer">
+            <h5>Add Cluster</h5>
+            <input type="text" placeholder="Cluster Name..." className="clusterInput clusterNameInput" />
+            <input type="text" placeholder="Cluster URL..." className="clusterInput clusterUrlInput" />
+            <div className="buttonsContainer">
+              <div className="logoutButton button-17" onClick={createNewCluster}>Submit</div>
+              <div className="cancelButton button-17" onClick={() => { setShowclusterEditor(false) }}>Cancel</div>
+            </div>
+          </div>
+          <div className="verticalLine"></div>
+          <div className="deleteClusterContainer">
+            <h5>Delete Cluster</h5>
+            {clusterElements}
+          </div>
         </div>
-        {clusterElements}
       </div>
     </div>
   )
 }
-export default ClusterCreator;
+export default ClusterEditor;

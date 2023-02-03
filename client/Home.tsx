@@ -8,7 +8,7 @@ function Home({ username, photo }) {
   const [clusters, setClusters] = useState(null)
   const [clustersFetched, setClustersFetched] = useState(false);
   const [currentProfileId, setCurrentProfileId] = useState('');
-  const [showClusterCreator, setShowClusterCreator] = useState(false);
+  const [showclusterEditor, setShowclusterEditor] = useState(false);
 
   useEffect(() => {
     // Get clusters and store them in state for link population.
@@ -26,13 +26,13 @@ function Home({ username, photo }) {
   return (
     <div className="App">
       <Header username={username} photo={photo} />
-      <NavBar 
-        setCurrentProfileId={setCurrentProfileId} 
-        setClustersFetched={setClustersFetched} 
-        showClusterCreator={showClusterCreator} 
-        setShowClusterCreator={setShowClusterCreator}
+      <NavBar
+        setCurrentProfileId={setCurrentProfileId}
+        setClustersFetched={setClustersFetched}
+        showclusterEditor={showclusterEditor}
+        setShowclusterEditor={setShowclusterEditor}
         clusters={clusters} />
-      <MainContainer clusters={clusters} currentProfileId={currentProfileId} setShowClusterCreator={setShowClusterCreator} />
+      <MainContainer clusters={clusters} currentProfileId={currentProfileId} setShowclusterEditor={setShowclusterEditor} />
     </div>
   )
 }

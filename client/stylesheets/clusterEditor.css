@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.clusterCreatorModal {
+.clusterEditorModal {
   max-height: 60vh;
   background-color: white;
   border: 1px solid black;
@@ -20,10 +20,35 @@
   padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 20px;
 }
 
-.clusterCreatorModal h3 {
+.clusterEditor {
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  gap: 100px;
+}
+
+.addClusterContainer,
+.deleteClusterContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+}
+
+h5 {
+  text-align: center;
+}
+
+.verticalLine {
+  border-right: 1px solid black;
+  align-self: center;
+  height: 150px;
+}
+
+.clusterEditorModal h3 {
   font-size: 1.5em;
   text-align: center;
 }
@@ -125,7 +150,7 @@
   text-decoration: none;
   text-shadow: none;
   text-underline-offset: 1px;
-  transition: border .2s ease-in-out,box-shadow .2s ease-in-out;
+  transition: border .2s ease-in-out, box-shadow .2s ease-in-out;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;

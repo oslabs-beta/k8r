@@ -6,10 +6,10 @@ import K8RLogoSquare from '../assets/logoSquare.png'
 import { useState } from 'react';
 import ProfileCreator from './ProfileCreator';
 import ProfileSelector from './ProfileSelector'
-import ClusterCreator from './ClusterCreator';
+import ClusterEditor from './ClusterEditor';
 
 
-function NavBar({ setCurrentProfileId, setClustersFetched, showClusterCreator, setShowClusterCreator, clusters }) {
+function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, setShowclusterEditor, clusters }) {
   const [showProfileCreator, setShowProfileCreator] = useState(false);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
 
@@ -17,14 +17,14 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showClusterCreator, s
     <>
       {showProfileCreator ? <ProfileCreator setShowProfileCreator={setShowProfileCreator} setCurrentProfileId={setCurrentProfileId} /> : null}
       {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileCreator={setShowProfileCreator} setShowProfileSelector={setShowProfileSelector} /> : null}
-      {showClusterCreator ? <ClusterCreator setClustersFetched={setClustersFetched} setShowClusterCreator={setShowClusterCreator} clusters={clusters} /> : null}
+      {showclusterEditor ? <ClusterEditor setClustersFetched={setClustersFetched} setShowclusterEditor={setShowclusterEditor} clusters={clusters} /> : null}
       <div className="navBar">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton navBarHomeButton" onClick={() => setCurrentProfileId('')}>
           <AiFillHome />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">
-          <AiOutlineCluster onClick={() => { setShowClusterCreator(true) }} />
+          <AiOutlineCluster onClick={() => { setShowclusterEditor(true) }} />
         </Link>
         <Link to="/" className="navBarButton navBarSettingsButton">
           <BsPlusCircle onClick={() => { setShowProfileCreator(true) }} />

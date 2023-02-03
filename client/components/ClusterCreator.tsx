@@ -31,13 +31,16 @@ function ClusterCreator({ setClustersFetched, setShowClusterCreator, clusters })
     setShowClusterCreator(false);
   }
 
-  function deleteProfile(clusterId) {
-    return async function deleteCluster() {
-      await fetch(`/api/cluster/delete/${clusterId}`, {
+  async function deleteCluster(clusterId) {
+    async function asyncDeleteCluster(clusterId) {
+      console.log('got to delete')
+      return await fetch(`/api/cluster/delete/${clusterId}`, {
         method: 'DELETE'
       })
-      setClusterElementsGenerated(false);
     }
+    const deletedCluster = await asyncDeleteCluster(clusterId);
+    setClustersFetched(false);
+    setShowClusterCreator (false);
   }
 
   useEffect(() => {
@@ -48,9 +51,9 @@ function ClusterCreator({ setClustersFetched, setShowClusterCreator, clusters })
       clusters.forEach((cluster) => {
         newClusterElements.push(
           <div key={uuidv4()} className="existingClusterContainer">
-            <span className="clusterName">{cluster.clusterName}</span>
-            <FaTrash onClick={() => {deleteProfile(cluster._id)}} />
-            {/* <div className="deleteButton button-17" onClick={() => { deleteProfile(cluster._id)} }}>Cancel</div> */}
+            {/* <span className="clusterName">{cluster.clusterName}</span> */}
+            {/* <FaTrash onClick={() => {deleteCluster(cluster._id)}} /> */}
+            <div className="deleteButton button-45" onClick={() => deleteCluster(cluster._id)}>{`DELETE: ${cluster.clusterName}`}</div>
           </div>
         )
       })
@@ -63,8 +66,8 @@ function ClusterCreator({ setClustersFetched, setShowClusterCreator, clusters })
     <div id="modalBackground">
       <div className="clusterCreatorModal">
         <h3>Cluster Creator</h3>
-        <input type="text" placeholder="Cluster Name..." className="clusterNameInput" />
-        <input type="text" placeholder="Cluster URL..." className="clusterUrlInput" />
+        <input type="text" placeholder="Cluster Name..." className="clusterInput clusterNameInput" />
+        <input type="text" placeholder="Cluster URL..." className="clusterInput clusterUrlInput" />
         <div className="buttonsContainer">
           <div className="logoutButton button-17" onClick={createNewCluster}>Submit</div>
           <div className="cancelButton button-17" onClick={() => { setShowClusterCreator(false) }}>Cancel</div>

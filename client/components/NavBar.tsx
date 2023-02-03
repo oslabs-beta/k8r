@@ -10,26 +10,23 @@ import ProfileSelector from './ProfileSelector'
 import ClusterEditor from './ClusterEditor';
 
 
-function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, setShowclusterEditor, clusters }) {
+function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, setShowclusterEditor, setShowLogoutModal, clusters }) {
   const [showProfileCreator, setShowProfileCreator] = useState(false);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
   const [hoverEffectsAdded, setHoverEffectsAdded] = useState(false);
 
   useEffect(() => {
     function extend(e) {
-      console.log('inside extend');
       const titles = document.querySelectorAll('.navBarButtonTitle')
       console.log('titles, ', titles);
       titles.forEach((titleDiv) => {
         if (!titleDiv.classList.contains('navBarExtended')) {
-          console.log('inside extend if')
           titleDiv.classList.add('navBarExtended');
         }
       })
     }
 
     function collapse(e) {
-      console.log('inside collapse!!');
       const titles = document.querySelectorAll('.navBarButtonTitle')
       titles.forEach((titleDiv) => {
         if (titleDiv.classList.contains('navBarExtended')) {
@@ -78,7 +75,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
           <AiOutlineShareAlt className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Share</div>
         </Link>
-        <Link to="/" className="navBarButton">
+        <Link to="/" className="navBarButton" onClick={setShowLogoutModal}>
           <BiLogOut className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Log Out</div>
         </Link>

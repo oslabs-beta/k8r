@@ -2,8 +2,7 @@ import { useState } from 'react';
 import '../stylesheets/header.css'
 import LogoutModal from './LogoutModal';
 
-function Header({ username, photo }) {
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
+function Header({ username, photo, showLogoutModal, setShowLogoutModal }) {
   return (
     <>
       {/* If showLogoutModal is true, then render LogoutModal, else render nothing */}

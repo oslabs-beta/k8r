@@ -28,9 +28,9 @@ const clusterController = {
     }
   },
   deleteCluster: async (req: Request, res: Response, next: NextFunction) => {
-    const { clusterId } = req.body;
+    const clusterId = req.params.clusterId;
     try {
-      const deletedCluster = await Cluster.findOneAndDelete({ clusterId });
+      const deletedCluster = await Cluster.findOneAndDelete({ _id: clusterId });
       res.locals.deletedCluster = deletedCluster;
       return next();
     }

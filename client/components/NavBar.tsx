@@ -9,7 +9,7 @@ import ProfileSelector from './ProfileSelector'
 import ClusterCreator from './ClusterCreator';
 
 
-function NavBar({ setCurrentProfileId, setClustersFetched, showClusterCreator, setShowClusterCreator }) {
+function NavBar({ setCurrentProfileId, setClustersFetched, showClusterCreator, setShowClusterCreator, clusters }) {
   const [showProfileCreator, setShowProfileCreator] = useState(false);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
 
@@ -17,7 +17,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showClusterCreator, s
     <>
       {showProfileCreator ? <ProfileCreator setShowProfileCreator={setShowProfileCreator} setCurrentProfileId={setCurrentProfileId} /> : null}
       {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileCreator={setShowProfileCreator} setShowProfileSelector={setShowProfileSelector} /> : null}
-      {showClusterCreator ? <ClusterCreator setClustersFetched={setClustersFetched} setShowClusterCreator={setShowClusterCreator} /> : null}
+      {showClusterCreator ? <ClusterCreator setClustersFetched={setClustersFetched} setShowClusterCreator={setShowClusterCreator} clusters={clusters} /> : null}
       <div className="navBar">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton navBarHomeButton" onClick={() => setCurrentProfileId('')}>

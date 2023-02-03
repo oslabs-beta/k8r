@@ -26,7 +26,12 @@ function Home({ username, photo }) {
   return (
     <div className="App">
       <Header username={username} photo={photo} />
-      <NavBar setCurrentProfileId={setCurrentProfileId} setClustersFetched={setClustersFetched} showClusterCreator={showClusterCreator} setShowClusterCreator={setShowClusterCreator} />
+      <NavBar 
+        setCurrentProfileId={setCurrentProfileId} 
+        setClustersFetched={setClustersFetched} 
+        showClusterCreator={showClusterCreator} 
+        setShowClusterCreator={setShowClusterCreator}
+        clusters={clusters} />
       <MainContainer clusters={clusters} currentProfileId={currentProfileId} setShowClusterCreator={setShowClusterCreator} />
     </div>
   )

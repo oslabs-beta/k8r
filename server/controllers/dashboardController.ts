@@ -1,5 +1,4 @@
-import UserDashboards from "../models/userDashboards";
-import express, { Express, Request, Response, ErrorRequestHandler, NextFunction } from 'express';
+import { DBUIds } from '../../types';
 
 const createErrorObject = (err) => {
   return {
@@ -8,21 +7,49 @@ const createErrorObject = (err) => {
   }
 }
 const dashboardController = {
+  getDashboards: async (grafanaUrl: string) => {
+    // Reference: https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/
+    const username = 'admin';
+    const password = 'prom-operator';
+    // Encode username and password (required to send via fetch)
+    const encodedCredentials = btoa(`${username}:${password}`);
 
-  addUserDashboard: async (userId: string, nodeExporterUId?: string, prometheusUId?: string, kubeletUId?: string, apiServerUId?: string) => {
-    try {
-      const userInfo = await UserDashboards.create({
-        userId: userId,
-        nodeExporterUId: nodeExporterUId,
-        prometheusUId: prometheusUId,
-        kubeletUId: kubeletUId,
-        apiServerUId: apiServerUId,
-      });
-      return userInfo;
-    } catch (err) {
-      createErrorObject(err);
+    const dashboardSearchStrings = {
+      nodeExporterUId: 'Node%20Exporter%20/%20Nodes',
+      prometheusUId: 'Prometheus%20/%20Overview',
+      kubeletUId: 'Kubernetes%20/%20Kubelet',
+      apiServerUId: 'Kubernetes%20/%20API%20Server',
+    };
+
+    async function fetchFromGrafana() {
+      const dbUIds: DBUIds = {};
+      for (let key in dashboardSearchStrings) {
+        // Get dashboard UId from grafana API
+        try {
+          const response = await fetch(
+            `${grafanaUrl}/api/search?query=${dashboardSearchStrings[key]}`,
+            {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Basic ${encodedCredentials}`,
+              },
+            }
+          )
+          const parsedResponse = await response.json();
+          // For each dashboard, add to dbUids key=dashboard and value=dashboardUid
+          dbUIds[key] = parsedResponse[0].uid;
+        }
+        catch (err) {
+          return createErrorObject(err);
+        };
+      }
+      return dbUIds;
     }
+    const dbUIds = await fetchFromGrafana();
+    return dbUIds;
   }
-}
+};
 
 export default dashboardController;

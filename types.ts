@@ -1,3 +1,10 @@
+export type Cluster = {
+  _id: string,
+  clusterName: string,
+  url: string,
+  dashboards: DashboardUIds
+}
+
 export type DashboardUIds = {
   nodeExporterUId: {
     dashboardUIdKey: string,

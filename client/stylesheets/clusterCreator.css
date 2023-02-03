@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.profileCreatorModal {
+.clusterCreatorModal {
   max-height: 60vh;
   background-color: white;
   border: 1px solid black;
@@ -23,12 +23,12 @@
   gap: 20px;
 }
 
-.profileCreatorModal h3 {
+.clusterCreatorModal h3 {
   font-size: 1.5em;
   text-align: left;
 }
 
-.profileNameInput {
+.clusterInput {
   border-radius: 15px;
   padding: 0.8em;
   border: 0px solid black;
@@ -37,20 +37,12 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.profileNameInput:hover {
+.clusterInput:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.profileNameInput::placeholder {
+.clusterInput::placeholder {
   font-style: italic;
-}
-
-.checkboxesContainer {
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  padding: 0 2em;
 }
 
 .buttonsContainer {

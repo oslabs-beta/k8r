@@ -1,54 +1,32 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { linkGenerator } from '../../metrics';
-import Tile from './Tile';
 import '../stylesheets/profileView.css';
+import ClusterTileContainer from './ClusterTileContainer';
 
-function ProfileView({ profileId, dashboardUIds }) {
-  const [tiles, setTiles] = useState<ReactElement[]>([])
-  const [dashboards, setDashboards] = useState<ReactElement[]>([])
+function ProfileView({ profileId, clusters }) {
+  const [clusterTileContainers, setClusterTileContainers] = useState<ReactElement[]>([]);
+  const [profileDetailsFetched, setProfileDetailsFetched] = useState(false);
 
   useEffect(() => {
     // Function to fetch metrics for the particular profile from backend and generate Tile components
-    async function generateTiles() {
-      const response = await fetch(`/api/getProfileDetails/${profileId}`)
+    async function generateClusterTileContainers() {
+      const response = await fetch(`/api/profile/getDetails/${profileId}`)
       const profileDetails = await response.json();
-      const newTiles: ReactElement[] = [];
-      profileDetails.metricsArray.forEach((metric) => {
-        const grafanaPanelUrl = linkGenerator(dashboardUIds, metric);
-        newTiles.push(<Tile key={uuidv4()} grafanaPanelUrl={grafanaPanelUrl} />);
+      const newClusterContainers: ReactElement[] = [];
+      clusters.forEach((cluster) => {
+        newClusterContainers.push(
+          <ClusterTileContainer key={uuidv4()} cluster={cluster} profileDetails={profileDetails} />
+        )
       })
-      setTiles(newTiles);
+      setClusterTileContainers(newClusterContainers);
     }
-    // If dashboardUids fetch has completed
-    if (dashboardUIds) {
-      // If a profileId is supplied, generate tile
-      if (profileId.length) {
-        generateTiles();
-      }
-      // If no profileId is supplied, display default dashboard
-      else {
-        const dashboardEl = <iframe className="dashboard" src={`http://localhost:3000/d/${dashboardUIds.nodeExporterUId}/node-exporter-nodes?orgId=1&refresh=30s&kiosk&theme=light`} />
-        const newDashboards: ReactElement[] = [];
-        newDashboards.push(dashboardEl);
-        setDashboards(newDashboards);
-      }
-
-    }
-
-  }, [dashboardUIds]);
+    generateClusterTileContainers();
+    setProfileDetailsFetched(true);
+  }, [profileDetailsFetched]);
 
   return (
     <>
-    {profileId ? 
-      <div className='profileContainer'>
-        {tiles}
-      </div>
-    :
-      <div className="dashboardContainer">
-      {dashboards}
-      </div>
-    }
+      {clusterTileContainers}
     </>
   );
 }

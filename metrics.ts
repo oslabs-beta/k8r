@@ -1,4 +1,4 @@
-import { DashboardUIds } from './types'
+import { Cluster } from './types'
 
 const dashboards = {
   nodeExporter: {
@@ -371,8 +371,9 @@ const allMetrics = {
   },
 }
 
-export function linkGenerator(dashboardUIDs: DashboardUIds, metric: string, grafanaUrl?: string, refresh?: number, theme?: string) {
-  if (!grafanaUrl) grafanaUrl = 'http://localhost:3000';
+export function linkGenerator(cluster: Cluster, metric: string, refresh?: number, theme?: string) {
+  const dashboardUIDs = cluster.dashboards;
+  const grafanaUrl = cluster.url;
   if (!refresh) refresh = 30;
   if (!theme) theme = 'light'
 

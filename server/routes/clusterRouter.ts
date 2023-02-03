@@ -7,7 +7,7 @@ router.get('/getAll', clusterController.getClusters, (req: Request, res: Respons
   res.status(200).json(res.locals.clusters);
 })
 
-router.delete('/delete', clusterController.deleteCluster, (req: Request, res: Response) => {
+router.delete('/delete/:clusterId', clusterController.deleteCluster, (req: Request, res: Response) => {
   res.status(200).json(res.locals.deletedCluster);
 })
 

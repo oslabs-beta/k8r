@@ -9,11 +9,13 @@ import ProfileCreator from './ProfileCreator';
 import ProfileSelector from './ProfileSelector'
 import ClusterEditor from './ClusterEditor';
 import e from 'express';
+import ContactModal from './ContactModal';
 
 
 function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, setShowclusterEditor, setShowLogoutModal, clusters }) {
   const [showProfileCreator, setShowProfileCreator] = useState(false);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
   const [hoverEffectsAdded, setHoverEffectsAdded] = useState(false);
 
   useEffect(() => {
@@ -49,6 +51,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
       {showProfileCreator ? <ProfileCreator setShowProfileCreator={setShowProfileCreator} setCurrentProfileId={setCurrentProfileId} /> : null}
       {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileCreator={setShowProfileCreator} setShowProfileSelector={setShowProfileSelector} /> : null}
       {showclusterEditor ? <ClusterEditor setClustersFetched={setClustersFetched} setShowclusterEditor={setShowclusterEditor} clusters={clusters} /> : null}
+      {showContactModal ? <ContactModal setShowContactModal={setShowContactModal} /> : null}
       <div className="navBar navBarCollapsed">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton" onClick={() => setCurrentProfileId('')}>
@@ -67,10 +70,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
           <BsFolder2Open className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Select Profile</div>
         </Link>
-        <Link to="/" className="navBarButton" onClick={(e) => {
-          window.open('mailto:k8r-main@gmail.com', '_blank');
-          e.preventDefault();
-        }}>
+        <Link to="/" className="navBarButton" onClick={() => { setShowContactModal(true) }}>
           <BsPeopleFill className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Contact</div>
         </Link>

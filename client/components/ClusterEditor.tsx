@@ -46,7 +46,6 @@ function ClusterEditor({ setClustersFetched, setShowclusterEditor, clusters }) {
     }
     const deletedCluster = await asyncDeleteCluster(clusterId);
     setClustersFetched(false);
-    setShowclusterEditor(false);
   }
 
   useEffect(() => {

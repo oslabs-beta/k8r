@@ -4,10 +4,10 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-describe("GET /getDashboardUIds", () => {
-  it('Returns status code 200 when fetching dashboard UIds', async () => {
+describe("GET all clusters.", () => {
+  it('Should return a status code 200 when fetching clusters.', async () => {
     const res = await request(app)
-      .get('/api/getDashboardUIds')
+      .get('/api/cluster/getAll')
       .set('Cookie', [`id=${process.env.K8R_USER_ID}`])
     expect(res.statusCode).toEqual(200);
   });

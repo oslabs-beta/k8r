@@ -4,7 +4,6 @@
   width: 100%;
   box-sizing: border-box;
   gap: 30px;
-  min-height: 100%;
 }
 
 .dashboard {
@@ -35,7 +34,7 @@
 .dashboardContainer iframe {
   border-radius: 10px;
   width: 100%;
-  height: 80vh;
+  height: 1250px;
 }
 
 .collapsed {
@@ -47,6 +46,6 @@
 
 .dashboardExtended {
   transition: all 0.9s ease-out;
-  height: 80vh;
+  height: 1250px;
   width: 100%;
 }

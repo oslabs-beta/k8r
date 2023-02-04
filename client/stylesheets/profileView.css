@@ -54,10 +54,17 @@
 }
 
 .profileCollapsed {
-  transition: 0.9s all;
-  height: 0px;
-  overflow: hidden;
+  transition: height 0.9s;
+  height: 0;
 }
+
+.profileCollapsed iframe {
+  transition: height 0.9s;
+  height: 0;
+  width: 100%;
+  box-shadow: unset;
+}
+
 
 .profileExtended {
   transition: all 0.9s;

@@ -11,7 +11,8 @@ function ClusterEditor({ setClustersFetched, setShowclusterEditor, clusters }) {
     let url: String = (document.querySelector('.clusterUrlInput') as HTMLInputElement).value;
 
     // Url verifier
-    if (url.slice(0, 8) != 'http://' || url.slice(0, 9) != 'https://') {
+    if (url.slice(0, 7) != 'http://' && url.slice(0, 8) != 'https://') {
+      console.log(url.slice(0, 8))
       url = 'http://' + url;
     }
 

@@ -47,5 +47,6 @@
 .dashboardExtended {
   transition: all 0.9s ease-out;
   height: 1250px;
+  overflow: hidden;
   width: 100%;
 }

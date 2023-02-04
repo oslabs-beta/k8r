@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import ProfileCreator from './ProfileCreator';
 import ProfileSelector from './ProfileSelector'
 import ClusterEditor from './ClusterEditor';
+import e from 'express';
 
 
 function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, setShowclusterEditor, setShowLogoutModal, clusters }) {
@@ -66,14 +67,17 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
           <BsFolder2Open className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Select Profile</div>
         </Link>
-        <Link to="/" className="navBarButton" onClick={() => { setShowProfileSelector(true) }}>
+        <Link to="/" className="navBarButton" onClick={(e) => {
+          window.open('mailto:k8r-main@gmail.com', '_blank');
+          e.preventDefault();
+        }}>
           <BsPeopleFill className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Contact</div>
         </Link>
-        <Link to="/" className="navBarButton">
+        {/* <Link to="/" className="navBarButton">
           <AiOutlineShareAlt className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Share</div>
-        </Link>
+        </Link> */}
         <Link to="/" className="navBarButton" onClick={setShowLogoutModal}>
           <BiLogOut className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Log Out</div>

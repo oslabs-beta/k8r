@@ -28,7 +28,7 @@ function DashboardView({ clusters }) {
       setDashboards(newDashboards);
       setDashboardsFetched(true)
     }
-  }, [dashboardsFetched]);
+  }, [dashboardsFetched, clusters]);
 
   return (
     <>

@@ -12,8 +12,10 @@ function ClusterEditor({ setClustersFetched, setShowclusterEditor, clusters }) {
 
     // Url verifier
     if (url.slice(0, 7) != 'http://' && url.slice(0, 8) != 'https://') {
-      console.log(url.slice(0, 8))
       url = 'http://' + url;
+    }
+    while (url.slice(-1) === '/') {
+      url = url.slice(0, -1)
     }
 
     const bodyObj = {

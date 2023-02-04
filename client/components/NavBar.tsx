@@ -54,20 +54,20 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
           <AiFillHome className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Home</div>
         </Link>
-        <Link to="/" className="navBarButton">
-          <AiOutlineCluster className="navBarButtonIcon" onClick={() => { setShowclusterEditor(true) }} />
+        <Link to="/" className="navBarButton" onClick={() => { setShowclusterEditor(true) }}>
+          <AiOutlineCluster className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Cluster Editor</div>
         </Link>
-        <Link to="/" className="navBarButton">
-          <BsPlusCircle className="navBarButtonIcon" onClick={() => { setShowProfileCreator(true) }} />
+        <Link to="/" className="navBarButton" onClick={() => { setShowProfileCreator(true) }}>
+          <BsPlusCircle className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Add Profile</div>
         </Link>
-        <Link to="/" className="navBarButton">
-          <BsFolder2Open className="navBarButtonIcon" onClick={() => { setShowProfileSelector(true) }} />
+        <Link to="/" className="navBarButton" onClick={() => { setShowProfileSelector(true) }}>
+          <BsFolder2Open className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Select Profile</div>
         </Link>
-        <Link to="/" className="navBarButton">
-          <BsPeopleFill className="navBarButtonIcon" onClick={() => { setShowProfileSelector(true) }} />
+        <Link to="/" className="navBarButton" onClick={() => { setShowProfileSelector(true) }}>
+          <BsPeopleFill className="navBarButtonIcon" />
           <div className="navBarButtonTitle navBarCollapsed">Contact</div>
         </Link>
         <Link to="/" className="navBarButton">

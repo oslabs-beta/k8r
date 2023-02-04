@@ -39,13 +39,13 @@
 }
 
 .navBarCollapsed {
-  transition: all 0.5s;
+  transition: all 0.8s;
   width: 0;
   display: none;
 }
 
 .navBarExtended {
-  transition: all 0.5s;
+  transition: all 0.8s;
   width: auto;
   display: block;
   white-space: nowrap;

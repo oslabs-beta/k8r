@@ -17,8 +17,8 @@ function ProfileSelection({ setCurrentProfileId, setShowProfileSelector, setprof
   }
 
   return (
-    <div className="profileSelectionContainer">
-      <div key={uuidv4()} className="profileSelection button-17" onClick={renderNewProfile}>{profileName}</div>
+    <div key={uuidv4()} className="profileSelectionContainer">
+      <div className="profileSelection button-17" onClick={renderNewProfile}>{profileName}</div>
       <FaTrash onClick={deleteProfile} />
     </div>
   );

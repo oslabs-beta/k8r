@@ -18,7 +18,6 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
   useEffect(() => {
     function extend(e) {
       const titles = document.querySelectorAll('.navBarButtonTitle')
-      console.log('titles, ', titles);
       titles.forEach((titleDiv) => {
         if (!titleDiv.classList.contains('navBarExtended')) {
           titleDiv.classList.add('navBarExtended');

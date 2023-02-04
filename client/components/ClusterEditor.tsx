@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { FaTrash } from 'react-icons/fa';
 import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/clusterEditor.css'
 
@@ -9,7 +8,12 @@ function ClusterEditor({ setClustersFetched, setShowclusterEditor, clusters }) {
 
   const createNewCluster = async (e) => {
     const name: String = (document.querySelector('.clusterNameInput') as HTMLInputElement).value;
-    const url: String = (document.querySelector('.clusterUrlInput') as HTMLInputElement).value;
+    let url: String = (document.querySelector('.clusterUrlInput') as HTMLInputElement).value;
+
+    // Url verifier
+    if (url.slice(0, 8) != 'http://' || url.slice(0, 9) != 'https://') {
+      url = 'http://' + url;
+    }
 
     const bodyObj = {
       name,
@@ -33,7 +37,6 @@ function ClusterEditor({ setClustersFetched, setShowclusterEditor, clusters }) {
 
   async function deleteCluster(clusterId) {
     async function asyncDeleteCluster(clusterId) {
-      console.log('got to delete')
       return await fetch(`/api/cluster/delete/${clusterId}`, {
         method: 'DELETE'
       })
@@ -44,10 +47,8 @@ function ClusterEditor({ setClustersFetched, setShowclusterEditor, clusters }) {
   }
 
   useEffect(() => {
-    console.log('clusters in cluster creator use effect ', clusters);
     const newClusterElements: React.ReactElement[] = []
     if (!clusterElementsGenerated) {
-      console.log('got in if statement');
       clusters.forEach((cluster) => {
         newClusterElements.push(
           <div key={uuidv4()} className="existingClusterContainer">

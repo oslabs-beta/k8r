@@ -16,9 +16,9 @@ function MainContainer({ clusters, currentProfileId, setShowclusterEditor }) {
         :
         <>
           {currentProfileId ?
-            <ProfileView key={uuidv4()} clusters={clusters} profileId={currentProfileId} />
+            <ProfileView clusters={clusters} profileId={currentProfileId} />
             :
-            <DashboardView key={uuidv4()} clusters={clusters} />
+            <DashboardView clusters={clusters} />
           }
         </>
       }

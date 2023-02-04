@@ -22,35 +22,49 @@
 }
 
 .navBarButton {
-  width: 100%;
   color: var(--K8RPeach);
   font-size: 40px;
   display: flex;
   align-items: center;
   gap: 20px;
   text-decoration: none;
+  width: 100%;
 }
 
 .navBarButton:hover {
-  transition: 0.2s;
+  /* transition: 0.6s; */
   transform: scale(1.15);
   color: var(--K8RLightBlue);
   cursor: pointer;
 }
 
-.navBarCollapsed {
-  transition: all 0.8s;
-  width: 0;
-  display: none;
-}
-
-.navBarExtended {
-  transition: all 0.8s;
-  width: auto;
-  display: block;
-  white-space: nowrap;
-}
-
 .navBarButtonTitle {
   font-size: 1.2rem
+}
+
+.navBarButtonTitle.navBarCollapsed {
+  transition: all 0.6s;
+  width: 0;
+  display: none;
+  opacity: 0;
+}
+
+.navBarButtonTitle.navBarExtended {
+  transition: all 0.6s;
+  flex: 1;
+  width: auto;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+  opacity: 1;
+}
+
+.navBar.navBarCollapsed {
+  transition: all 0.6s;
+  width: 120px;
+}
+
+.navBar.navBarExtended {
+  transition: all 0.6s;
+  width: 260px;
 }

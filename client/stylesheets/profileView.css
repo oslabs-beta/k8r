@@ -59,7 +59,6 @@
 }
 
 .profileCollapsed iframe {
-  transition: height 0.9s;
   height: 0;
   width: 100%;
   box-shadow: unset;

@@ -17,7 +17,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
 
   useEffect(() => {
     function extend(e) {
-      const titles = document.querySelectorAll('.navBarButtonTitle')
+      const titles = document.querySelectorAll('.navBarCollapsed')
       titles.forEach((titleDiv) => {
         if (!titleDiv.classList.contains('navBarExtended')) {
           titleDiv.classList.add('navBarExtended');
@@ -26,7 +26,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
     }
 
     function collapse(e) {
-      const titles = document.querySelectorAll('.navBarButtonTitle')
+      const titles = document.querySelectorAll('.navBarCollapsed')
       titles.forEach((titleDiv) => {
         if (titleDiv.classList.contains('navBarExtended')) {
           titleDiv.classList.remove('navBarExtended');
@@ -48,7 +48,7 @@ function NavBar({ setCurrentProfileId, setClustersFetched, showclusterEditor, se
       {showProfileCreator ? <ProfileCreator setShowProfileCreator={setShowProfileCreator} setCurrentProfileId={setCurrentProfileId} /> : null}
       {showProfileSelector ? <ProfileSelector setCurrentProfileId={setCurrentProfileId} setShowProfileCreator={setShowProfileCreator} setShowProfileSelector={setShowProfileSelector} /> : null}
       {showclusterEditor ? <ClusterEditor setClustersFetched={setClustersFetched} setShowclusterEditor={setShowclusterEditor} clusters={clusters} /> : null}
-      <div className="navBar">
+      <div className="navBar navBarCollapsed">
         <img src={K8RLogoSquare} className="navBarLogo" alt="K8R Logo" />
         <Link to="/" className="navBarButton" onClick={() => setCurrentProfileId('')}>
           <AiFillHome className="navBarButtonIcon" />

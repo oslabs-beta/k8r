@@ -1,4 +1,3 @@
-
 /**
  * @jest-environment jsdom
  */
@@ -10,6 +9,7 @@ import Header from '../../client/components/Header';
 describe('Test Header Component', () => {
   describe('Header', () => {
     let header;
+
     // Create mock function, which should return the boolean input in testing
     const mockSetShowLogoutModal = jest.fn(bool => bool);
 

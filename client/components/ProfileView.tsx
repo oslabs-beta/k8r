@@ -22,12 +22,12 @@ function ProfileView({ profileId, clusters }) {
     }
     generateClusterTileContainers();
     setProfileDetailsFetched(true);
-  }, [profileDetailsFetched]);
+  }, [profileDetailsFetched, profileId]);
 
   return (
-    <>
+    <div className="profileContainers">
       {clusterTileContainers}
-    </>
+    </div>
   );
 }
 

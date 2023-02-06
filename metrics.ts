@@ -1,19 +1,23 @@
 import { Cluster } from './types'
 
-const dashboards = {
+export const dashboards = {
   nodeExporter: {
+    fullName: 'Node Exporter',
     dashboardUIdKey: 'nodeExporterUId',
     grafanaLinkDText: 'node-exporter-nodes'
   },
   prometheus: {
+    fullName: 'Prometheus',
     dashboardUIdKey: 'prometheusUId',
     grafanaLinkDText: 'prometheus-overview',
   },
   apiServer: {
+    fullName: 'API Server',
     dashboardUIdKey: 'apiServerUId',
     grafanaLinkDText: 'kubernetes-api-server',
   },
   kubelet: {
+    fullName: 'Kubelets',
     dashboardUIdKey: 'kubeletUId',
     grafanaLinkDText: 'kuberenetes-kubelet',
   }

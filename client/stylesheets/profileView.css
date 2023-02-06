@@ -1,39 +1,71 @@
-.dashboardContainer {
+.profileContainers {
   display: flex;
-  box-sizing: border-box;
-  padding: 30px;
-  gap: 30px;
-  min-height: 100%;
+  flex-direction: column;
 }
 
-.profileContainer {
+.clusterTileContainer {
+  margin: 10px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 10px 10px 0 0;
+}
+
+.profileTitle {
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1.25em;
+  color: var(--GenericBackground);
+  background-color: rgb(83, 83, 83);
+  border-bottom: 1px solid black;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tileContainer {
+  border: 1px solid black;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.bigProfile {
   display: grid;
-  box-sizing: border-box;
-  padding: 30px;
-  gap: 30px;
-  min-height: 100%;
   grid-template-columns: repeat(4, 1fr);
-}
-
-.smallProfileContainer {
-  display: flex;
+  gap: 20px;
   box-sizing: border-box;
-  padding: 30px;
-  gap: 30px;
-  min-height: 100%;
+  padding: 10px;
 }
 
-.tile {
-  flex: 1;
-  justify-self: center;
-  align-self: center;
-  border: 1px solid black;
-  border-radius: 10px;
+.bigProfile iframe {
+  width: 100%;
   height: 400px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
-.dashboard {
+.tileContainer iframe {
   flex: 1;
-  border: 1px solid black;
-  border-radius: 10px;
+  width: 100%;
+  height: 400px;
+  border: 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.profileCollapsed {
+  transition: height 0.9s;
+  height: 0;
+}
+
+.profileCollapsed iframe {
+  height: 0;
+  width: 100%;
+  box-shadow: unset;
+}
+
+
+.profileExtended {
+  transition: all 0.9s;
+  height: auto;
 }

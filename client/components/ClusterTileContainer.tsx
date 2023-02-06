@@ -7,6 +7,12 @@ import Tile from './Tile';
 function ClusterTileContainer({ cluster, profileDetails }) {
   const [tiles, setTiles] = useState<ReactElement[]>([]);
 
+  function toggleDashboardExtend(e) {
+    const dashboard = e.currentTarget.nextSibling;
+    dashboard.classList.toggle('profileCollapsed');
+    dashboard.classList.toggle('profileExtended');
+  }
+
   useEffect(() => {
     const newTiles: ReactElement[] = [];
     profileDetails.metricsArray.forEach((metric) => {
@@ -17,7 +23,10 @@ function ClusterTileContainer({ cluster, profileDetails }) {
   }, [])
   return (
     <div className="clusterTileContainer">
-      {tiles}
+      <div className="profileTitle" onClick={toggleDashboardExtend}>{`${cluster.clusterName} - ${profileDetails.profileName}`}</div>
+      <div className={`profileExtended ${tiles.length > 4 ? 'bigProfile' : 'tileContainer'}`}>
+        {tiles}
+      </div>
     </div>
   );
 }

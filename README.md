@@ -89,7 +89,7 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
 
         <br>
         <br>
-      <img src="./client/assets/clusterEditor.gif" alt="Cluster Editor Video" width="800" height="380" />
+      <img src="./client/assets/Add Second Cluster - README.gif" alt="Cluster Editor Video" width="800" height="380" />
     <br>
     <br>
 
@@ -99,7 +99,7 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
 
         <br>
         <br>
-      <img src="./client/assets/profileEditor.gif" alt="Profile Editor Video" width="800" height="380" />        
+      <img src="./client/assets/Add Pod Lifecycle - README.gif" alt="Profile Editor Video" width="800" height="380" />        
 
 # Contribution
 Contributions are a great way to contribute to the open source community as a whole. If you'd like to contribute to K8R, please follow the steps below to get started.

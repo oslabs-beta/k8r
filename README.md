@@ -4,7 +4,7 @@
   </a>
 
   <p align="center">
-    An innovative Kubernetes Visualizer providing a catered user experience.
+    K8R visualizes real-time Kubernetes cluster and hardware metrics, with an emphasis on customization.
     <br />
   </p>
 </p>
@@ -12,62 +12,25 @@
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">K8R</a>
-      <ul>
-        <li><a href="#tech-stack">Tech Stack</a></li>
-      </ul>
-    </li>
-    <li><a href="#installation">Installation</a>
-      <ul>
-      <li>
-        <a href="#getting-started">Getting Started - Initialize a Cluster of Your Choice</a>
-          <ul>
-            <li>
-              <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/localClusterSetup.md#setup">Initialize a Local Minikube Cluster</a>
-            </li>
-            <li>
-              <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-google-cloud-services">Initialize a Cloud Cluster on Google Cloud Services</a>
-            </li>
-            <li>
-              <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-amazon-web-services">Initialize a Cloud Cluster on Amazon Web Services</a>
-            </li>
-          </ul>
-      </li>
-      <li>
-        <a href="#usage">Usage</a>
-      </li>
-      </ul>
-    </li>
-        <li>
-          <a href="#Contribution">Contribution</a>
-        </li>
-      </ul>
-    </li>
-    <li><a href="#extension-settings">Extension Settings</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#creators">Creators</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
+
+  1. [K8R](#k8r)
+  2. [Tech Stack](#tech-stack)
+  3. [Setup](#setup)
+      * Getting Started - Initialize a Cluster of Your Choice
+          * [Initialize a Local Minikube Cluster](https://github.com/oslabs-beta/k8r/blob/main/documentation/localClusterSetup.md#setup)
+          * [Initialize a Cloud Cluster on Google Cloud Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-google-cloud-services)
+          * [Initialize a Cloud Cluster on Amazon Web Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-amazon-web-services)
+      * [Usage](#usage)
+  4. [Contribution](#contribution)
+  5. [License](#license)
+  6. [Creators](#creators)
 </details>
 
 <hr>
 
-# Setup
-  <ol>
-    <li>
-      <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#initialize-minikube-cluster---mac-os">Initialize Minikube Cluster</a>
-      <ul>
-        <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#initialize-minikube-cluster---mac-os">Mac OS</a></li>
-        <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#initialize-minikube-cluster---windows">Windows</a></li>
-      </ul>
-    </li>
-    <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#edit-grafana-config-map">Edit Grafana Config Map</a></li>
-    <li><a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/setup.md#expose-port-and-access-grafana">Expose Port and Access Grafana</a></li>
-  </ol>
+# K8R
+K8R is Purpose-built to deliver maximum out of the box productivity without the headaches of traditional solutions, K8R delivers at-a-glance insights into detailed and executive KPIs for your local and cloud based clusters. With K8Rs lightweight and unified user-experience, K8R works for you, not the other way around.
+
 
 # Tech Stack
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -83,9 +46,34 @@
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
 ![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)
 
+# Setup
+1. Getting Started - Initialize a Cluster of Your Choice
+    * [Initialize a Local Minikube Cluster](https://github.com/oslabs-beta/k8r/blob/main/documentation/localClusterSetup.md#setup)
+    * [Initialize a Cloud Cluster on Google Cloud Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-google-cloud-services) 
+    * [Initialize a Cloud Cluster on Amazon Web Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-amazon-web-services)
+2. Installation
+    * Fork and Clone the Project
+    * Run `node -v` to confirm your version of node. K8R requires node 18 or later.
+        * To install latest version of node, run `nvm install --lts`
+    * Run `npm i` to install all package dependencies.
+    * Create a MongoDB database and Google OAuth credentials to use within your app.
+    * Create a .env file and assign the following environment variables according to your MongoDB and Google OAuth setup.
 
+          // MONGO
+          MONGO_URL=
+          MONGO_PORT=
+          MONGO_USERNAME=
+          MONGO_PASSWORD=
 
-## Contribution
+          // Google OAuth
+          GOOGLE_CLIENT_SECRET=
+          GOOGLE_CLIENT_ID=
+          GOOGLE_CALLBACKURL='http://localhost:8888/auth/google/callback'
+          SESSION_SECRET=[Randomized String for Express Sessions]
+    * Run `npm run dev` to initialize the application on `http://localhost:8888/`
+3. Usage
+
+# Contribution
 Contributions are a great way to contribute to the open source community as a whole. If you'd like to contribute to K8R, please follow the steps below to get started.
 
 1. Fork the Project
@@ -94,13 +82,13 @@ Contributions are a great way to contribute to the open source community as a wh
 4. Push to the Branch (`git push origin feature/yourNewFeature`)
 5. Open a Pull Request
 
-## License
+# License
 Distributed under the MIT License. See [`LICENSE`](https://github.com/oslabs-beta/k8r/blob/master/LICENSE) for more information.
 
-## Creators
+# Creators
 | Developed By |    |    |
 | :---:   | :---: | :---: |
 | Josh Howard  | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JoshHowardDev)   | [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/JoshHowardDev)   |
 | Brian Jaber  | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Brian-Jaber)   | [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/brianjaber/)   |
-| Anthony Cho  | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayhcho)   | [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://github.com/ayhcho)   |
+| Anthony Cho  | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayhcho)   | [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anthony-cho-09a38a261/)   |
 | Chris Oakes  | [![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ckoakes)   | [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/christopher-k-oakes/)   |

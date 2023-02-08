@@ -22,7 +22,7 @@
 
 
 # Initialize a Cloud Cluster on Google Cloud Services
-## GCS - Initialzie a Cluster
+## GCS - Initialize a Cluster
 1. Visit [Google Cloud Services](https://console.cloud.google.com/kubernetes/) to create a project and initialize a standard cluster with your preferred resources.
 
 

@@ -19,11 +19,27 @@
         <li><a href="#tech-stack">Tech Stack</a></li>
       </ul>
     </li>
-    <li><a href="#installation">Installation</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a></li>
-    <li><a href="#usage">Usage</a>
+    <li><a href="#installation">Installation</a>
       <ul>
+      <li>
+        <a href="#getting-started">Getting Started - Initialize a Cluster of Your Choice</a>
+          <ul>
+            <li>
+              <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/localClusterSetup.md#setup">Initialize a Local Minikube Cluster</a>
+            </li>
+            <li>
+              <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-google-cloud-services">Initialize a Cloud Cluster on Google Cloud Services</a>
+            </li>
+            <li>
+              <a href="https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-amazon-web-services">Initialize a Cloud Cluster on Amazon Web Services</a>
+            </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#usage">Usage</a>
+      </li>
+      </ul>
+    </li>
         <li>
           <a href="#Contribution">Contribution</a>
         </li>

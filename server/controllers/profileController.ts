@@ -10,7 +10,7 @@ const createErrorObject = (err) => {
 }
 
 const profileController = {
-  createProfile: async (req: Request, res: Response, next: NextFunction) => {
+  addProfile: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userId = req.cookies.id;
       const { profileName, metrics } = req.body;

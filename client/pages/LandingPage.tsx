@@ -8,10 +8,6 @@ function LandingPage() {
     e.preventDefault();
     const usernameInput: HTMLInputElement | null = document.querySelector('#usernameInput');
     const passwordInput: HTMLInputElement | null = document.querySelector('#passwordInput');
-
-    console.log('The username submitted was ', usernameInput?.value);
-    console.log('The username submitted was ', passwordInput?.value);
-    console.log('You hit submit');
   }
 
   return (

@@ -1,31 +1,27 @@
 import '../stylesheets/mainContainer.css';
 import logoSquareTransparent from '../assets/logoSquareTransparent.png';
 import ProfileView from './ProfileView';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import DashboardView from './DashboardView';
 import { v4 as uuidv4 } from 'uuid';
 
-function MainContainer({ dashboardUIds, currentProfileId }) {
-  const [profileViewArr, setProfileViewArr] = useState<React.ReactElement[]>([])
-
-  useEffect(() => {
-    const newProfileViewArr: React.ReactElement[] = [];
-    newProfileViewArr.push(
-      <ProfileView key={uuidv4()} dashboardUIds={dashboardUIds} profileId={currentProfileId} />
-    )
-    setProfileViewArr(newProfileViewArr!);
-  }, [currentProfileId, dashboardUIds])
-
+function MainContainer({ clusters, currentProfileId, setShowclusterEditor }) {
   return (
     <div className='mainContainer'>
-      <img
-        src={logoSquareTransparent}
-        className='logoWatermark'
-        alt='K8R Logo'
-      />
-      <div className='profileCard'>
-        {profileViewArr}
-      </div>
+      <img src={logoSquareTransparent} className='logoWatermark' alt='K8R Logo' />
+      {(!clusters) || (!clusters.length) ?
+        <div className="noClustersNotice">
+          <span>You currently have no clusters.</span>
+          <div className="addClusterButton button-17" onClick={() => { setShowclusterEditor(true) }}>Add Cluster</div>
+        </div>
+        :
+        <>
+          {currentProfileId ?
+            <ProfileView clusters={clusters} profileId={currentProfileId} />
+            :
+            <DashboardView clusters={clusters} />
+          }
+        </>
+      }
     </div>
   );
 }

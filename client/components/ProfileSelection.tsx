@@ -10,15 +10,15 @@ function ProfileSelection({ setCurrentProfileId, setShowProfileSelector, setprof
   }
 
   async function deleteProfile() {
-    await fetch(`/api/deleteProfile/${profileId}`, {
+    await fetch(`/api/profile/delete/${profileId}`, {
       method: 'DELETE'
     })
     setprofileElementsGenerated(false);
   }
 
   return (
-    <div className="profileSelectionContainer">
-      <div key={uuidv4()} className="profileSelection button-17" onClick={renderNewProfile}>{profileName}</div>
+    <div key={uuidv4()} className="profileSelectionContainer">
+      <div className="profileSelection button-17" onClick={renderNewProfile}>{profileName}</div>
       <FaTrash onClick={deleteProfile} />
     </div>
   );

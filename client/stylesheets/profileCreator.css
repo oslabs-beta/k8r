@@ -14,7 +14,6 @@
 .profileCreatorModal {
   max-height: 60vh;
   background-color: white;
-  opacity: 1;
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 0, 0, 5px 5px, rgba(0, 0, 0, 0.5);
@@ -59,6 +58,14 @@
   justify-content: center;
   align-items: center;
   gap: 2em;
+}
+
+.metricCategory {
+  margin: 8px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-style: italic;
+  border-bottom: 1px solid;
 }
 
 .buttonsContainer a {

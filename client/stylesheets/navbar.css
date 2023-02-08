@@ -1,8 +1,11 @@
 .navBar {
   grid-area: navBar;
+  position: sticky;
+  top: 0;
+  left: 0;
   box-sizing: border-box;
   background-color: var(--K8RDarkBlue);
-  min-height: 100vh;
+  height: 100vh;
   padding: 15px 40px;
   display: flex;
   flex-direction: column;
@@ -21,11 +24,48 @@
 .navBarButton {
   color: var(--K8RPeach);
   font-size: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  width: 100%;
 }
 
 .navBarButton:hover {
-  transition: 0.2s;
+  /* transition: 0.3s; */
   transform: scale(1.15);
   color: var(--K8RLightBlue);
   cursor: pointer;
+}
+
+.navBarButtonTitle {
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+
+.navBarButtonTitle.navBarCollapsed {
+  transition: all 0.3s;
+  width: 0;
+  display: none;
+  opacity: 0;
+}
+
+.navBarButtonTitle.navBarExtended {
+  transition: all 0.3s;
+  flex: 1;
+  width: auto;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+  opacity: 1;
+}
+
+.navBar.navBarCollapsed {
+  transition: all 0.3s;
+  width: 120px;
+}
+
+.navBar.navBarExtended {
+  transition: all 0.3s;
+  width: 260px;
 }

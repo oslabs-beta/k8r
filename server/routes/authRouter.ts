@@ -28,7 +28,6 @@ router.get('/failure', (request, response) => {
 
 router.get('/logout', (request, response) => {
   request.logout(() => {
-    console.log('logging out');
     // Destroy cookie and then redirect to the home page
     request.session.destroy(() => {
       response.redirect('/');

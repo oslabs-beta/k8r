@@ -3,29 +3,38 @@ import Header from './components/Header'
 import MainContainer from './components/MainContainer'
 import NavBar from './components/NavBar'
 import { useEffect, useState } from 'react'
-import ProfileSelector from './components/ProfileSelector'
 
 function Home({ username, photo }) {
-  const [dashboardUIds, setDashboardUIds] = useState(null)
-  const [dashboardUIdsFetched, setDashboardUIdsFetched] = useState(false)
-  const [currentProfileId, setCurrentProfileId] = useState('')
+  const [clusters, setClusters] = useState(null)
+  const [clustersFetched, setClustersFetched] = useState(false);
+  const [currentProfileId, setCurrentProfileId] = useState('');
+  const [showclusterEditor, setShowclusterEditor] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
-    // Get dashboard UIds and store them in state for link population.
-    async function getDashboardUIds() {
-      const response = await fetch('/api/getDashboardUIds/')
-      const dbUIds = await response.json();
-      setDashboardUIds(dbUIds)
-      setDashboardUIdsFetched(true)
+    // Get clusters and store them in state for link population.
+    if (!clustersFetched) {
+      async function getClusters() {
+        const response = await fetch('/api/cluster/getAll/')
+        const newClusters = await response.json();
+        setClusters(newClusters)
+        setClustersFetched(true)
+      }
+      getClusters()
     }
-    getDashboardUIds()
-  }, [dashboardUIdsFetched])
+  }, [clustersFetched])
 
   return (
     <div className="App">
-      <Header username={username} photo={photo} />
-      <NavBar setCurrentProfileId={setCurrentProfileId} />
-      <MainContainer dashboardUIds={dashboardUIds} currentProfileId={currentProfileId} />
+      <Header username={username} photo={photo} showLogoutModal={showLogoutModal} setShowLogoutModal={setShowLogoutModal} />
+      <NavBar
+        setCurrentProfileId={setCurrentProfileId}
+        setClustersFetched={setClustersFetched}
+        showclusterEditor={showclusterEditor}
+        setShowclusterEditor={setShowclusterEditor}
+        setShowLogoutModal={setShowLogoutModal}
+        clusters={clusters} />
+      <MainContainer clusters={clusters} currentProfileId={currentProfileId} setShowclusterEditor={setShowclusterEditor} />
     </div>
   )
 }

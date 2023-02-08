@@ -73,6 +73,31 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
     * Run `npm run dev` to initialize the application on `http://localhost:8888/`
 3. Usage
 
+    * Log in from the landing page using Google OAuth.
+        <br>
+        <br>
+        <img src="./client/assets/login.gif" alt="Log In Video" width="800" height="380" />
+    <br>
+    <br>
+
+    * Use the Cluster Editor to add or remove clusters to your account. 
+        * Users can add additional clusters from any cluster source you prefer; including cloud hosted or local clusters. 
+        * K8R allows users to see all of your clusters in one place regardless of their source, without having to switch to different windows for each cluster.
+
+        <br>
+        <br>
+      <img src="./client/assets/clusterEditor.gif" alt="Cluster Editor Video" width="800" height="380" />
+    <br>
+    <br>
+
+    * Use the Profile Editor to add or remove profiles. 
+        * Users can add additional profiles for individual use cases and switch between profiles from the Profile Selector view. 
+        * K8R allows users to create profiles with as few or as many cluster and hardware metrics as needed.
+
+        <br>
+        <br>
+      <img src="./client/assets/profileEditor.gif" alt="Profile Editor Video" width="800" height="380" />        
+
 # Contribution
 Contributions are a great way to contribute to the open source community as a whole. If you'd like to contribute to K8R, please follow the steps below to get started.
 

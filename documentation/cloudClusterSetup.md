@@ -7,14 +7,14 @@
     <li>
       <a href="#initialize-a-cloud-cluster-on-google-cloud-services">Initialize a Cluster on Google Cloud Services</a>
       <ul>
-        <li><a href="#gcs---initialzie-a-cluster">GCS - Initialize a Cluster</a></li>
+        <li><a href="#gcs---initialize-a-cluster">GCS - Initialize a Cluster</a></li>
         <li><a href="#gcs---edit-grafana-config-map">GCS - Edit Config Map</a></li>
         <li><a href="#gcs---expose-service">GCS - Expose Service</a></li>
       </ul>
     </li>
     <li><a href="#initialize-a-cloud-cluster-on-amazon-web-services">Initialize a Cluster on Amazon Web Services</li>
       <ul>
-        <li><a href="#aws---initialzie-a-cluster">AWS - Initialize a Cluster</a></li>
+        <li><a href="#aws---initialize-a-cluster">AWS - Initialize a Cluster</a></li>
         <li><a href="#aws---edit-grafana-config-map">AWS - Edit Config Map</a></li>
       </ul>
   </ol>
@@ -82,7 +82,7 @@
           kubectl delete pod [pod name] -n default
 
 # Initialize a Cloud Cluster on Amazon Web Services
-## AWS - Initialzie a Cluster
+## AWS - Initialize a Cluster
 1. Visit [Amazon Web Services](https://aws.amazon.com/eks/) to create an Elastic Kubernetes Service cluster with your preferred resources.
 
 2. Create a [node IAM role](https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html#create-worker-node-role), a [service role](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html#create-service-role), and [the kubeconfig](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html).

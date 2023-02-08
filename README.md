@@ -4,7 +4,7 @@
   </a>
 
   <p align="center">
-    K8R visualizes real-time Kubernetes cluster and hardware metrics, with an emphasis on customization.
+    K8R visualizes real-time Kubernetes cluster and hardware metrics with an emphasis on customization.
     <br />
   </p>
 </p>
@@ -45,6 +45,9 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
 ![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)
+![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
+![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)
+
 
 # Setup
 1. Getting Started - Initialize a Cluster of Your Choice
@@ -76,7 +79,7 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
     * Log in from the landing page using Google OAuth.
         <br>
         <br>
-        <img src="./client/assets/login.gif" alt="Log In Video" width="800" height="380" />
+        <img src="./client/assets/Login.gif" alt="Log In Video" width="800" height="380" />
     <br>
     <br>
 

@@ -16,10 +16,11 @@
   1. [K8R](#k8r)
   2. [Tech Stack](#tech-stack)
   3. [Setup](#setup)
-      * Getting Started - Initialize a Cluster of Your Choice
+      * [Getting Started - Initialize a Cluster of Your Choice](#getting-started---initialize-a-cluster-of-your-choice)
           * [Initialize a Local Minikube Cluster](https://github.com/oslabs-beta/k8r/blob/main/documentation/localClusterSetup.md#setup)
           * [Initialize a Cloud Cluster on Google Cloud Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-google-cloud-services)
           * [Initialize a Cloud Cluster on Amazon Web Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-amazon-web-services)
+      * [Installation](#installation)
       * [Usage](#usage)
   4. [Contribution](#contribution)
   5. [License](#license)
@@ -50,11 +51,11 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
 
 
 # Setup
-1. Getting Started - Initialize a Cluster of Your Choice
+1. ## Getting Started - Initialize a Cluster of Your Choice
     * [Initialize a Local Minikube Cluster](https://github.com/oslabs-beta/k8r/blob/main/documentation/localClusterSetup.md#setup)
     * [Initialize a Cloud Cluster on Google Cloud Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-google-cloud-services) 
     * [Initialize a Cloud Cluster on Amazon Web Services](https://github.com/oslabs-beta/k8r/blob/main/documentation/cloudClusterSetup.md#initialize-a-cloud-cluster-on-amazon-web-services)
-2. Installation
+2. ## Installation
     * Fork and Clone the Project
     * Run `node -v` to confirm your version of node. K8R requires node 18 or later.
         * To install latest version of node, run `nvm install --lts`
@@ -74,7 +75,7 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
           GOOGLE_CALLBACKURL='http://localhost:8888/auth/google/callback'
           SESSION_SECRET=[Randomized String for Express Sessions]
     * Run `npm run dev` to initialize the application on `http://localhost:8888/`
-3. Usage
+3. ## Usage
 
     * Log in from the landing page using Google OAuth.
         <br>

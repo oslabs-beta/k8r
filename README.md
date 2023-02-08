@@ -80,7 +80,7 @@ K8R is Purpose-built to deliver maximum out of the box productivity without the 
     * Log in from the landing page using Google OAuth.
         <br>
         <br>
-        <img src="./client/assets/Login.gif" alt="Log In Video" width="800" height="380" />
+        <img src="./client/assets/loginProcess.gif" alt="Log In Video" width="800" height="380" />
     <br>
     <br>
 
